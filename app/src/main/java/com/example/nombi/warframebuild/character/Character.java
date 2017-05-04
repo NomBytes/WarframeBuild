@@ -1,10 +1,12 @@
 package com.example.nombi.warframebuild.character;
 
 /**
- * Created by Calvin on 4/26/2017.
+ * A character to create
+ * @author Calvin
+ * @version 17.05.02
  */
 
-public abstract class Character {
+abstract class Character {
 
     //
     private int myHealth;
@@ -19,7 +21,41 @@ public abstract class Character {
     private int myPwrEfficency;
 
     private String myType;
+    private String myBase;
     private String myCharName;
+    private String myCompanionType;
+
+    //////////////////////Constructor/////////////////////
+
+    /**
+     * Creates a new character
+     * @param theAtts The integer attributes a character holds
+     * @param theSpeed The sprint speed a warframe holds
+     * @param theBase The base type of character
+     * @param theName The Name of the character
+     * @param theCompanionType The base companion type
+     */
+    Character(int[] theAtts, double theSpeed, String theBase, String theName,
+                     String theCompanionType, String theType) {
+        initializeStats(theAtts, theSpeed);
+        myBase = theBase;
+        myCharName = theName;
+        myCompanionType = theCompanionType;
+        myType = theType;
+    }
+
+    /////////////Constructor Helper Methods/////////////////
+    private void initializeStats(int[] theAtts, double theSpeed) {
+        myHealth = theAtts[0];
+        myShields = theAtts[1];
+        myArmor = theAtts[2];
+        myPower = theAtts[3];
+        mySprintSpeed = theSpeed;
+        myPwrRange = theAtts[4];
+        myPwrStrength = theAtts[5];
+        myPwrDuration = theAtts[6];
+        myPwrEfficency = theAtts[7];
+    }
 
 ///////////////Getters and Setters/////////////////
     public int getMyHealth() {
@@ -95,11 +131,11 @@ public abstract class Character {
     }
 
     public String getMyType() {
-        return myType;
+        return myBase;
     }
 
     public void setMyType(String myType) {
-        this.myType = myType;
+        this.myBase = myType;
     }
 
     public String getMyCharName() {
@@ -109,4 +145,9 @@ public abstract class Character {
     public void setMyCharName(String myCharName) {
         this.myCharName = myCharName;
     }
+
+    public String getMyCompanionType() { return myCompanionType; }
+
+    public void setMyCompanionType(String myCompanionType) { this.myCompanionType = myCompanionType; }
+
 }
