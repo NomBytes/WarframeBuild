@@ -35,8 +35,8 @@ abstract class Character {
      * @param theName The Name of the character
      * @param theCompanionType The base companion type
      */
-    Character(int[] theAtts, double theSpeed, String theBase, String theName,
-                     String theCompanionType, String theType) {
+    public Character(int[] theAtts, double theSpeed, String theBase, String theName,
+              String theCompanionType, String theType) {
         initializeStats(theAtts, theSpeed);
         myBase = theBase;
         myCharName = theName;

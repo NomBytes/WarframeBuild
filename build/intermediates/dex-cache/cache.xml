@@ -3,12 +3,138 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\nombi\AndroidStudioProjects\WarframeBuild\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="89af165311124d355f48fc89ea92ffb9bf1b22d7">
-        <dex dex="C:\Users\nombi\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9cb89bd006c5e59359ed65199e9da286d3836db3\classes.dex" />
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_597c67c040f599989283ad843ff9a1df7c59e4a4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\faf0e80ae0d77ed1c85cb930d3059c4a60101ad4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7d67c3bc306ff1ee4b228d9e88d8d3d783b9166f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\add97b9fda714b17bf1e50408c192242838e2c29\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7024d2e61bccd32692a228f9a3348758a2e8f399\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\da3c92f87da735a04882f099bacb84d82f693f27\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_31073e9e253cf12cfbacdc3528dbd2dc1fd9340c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1e33251e0fce8f447909e9d0b52d68a6cca591f8">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9956d448aeb8fe2d96f71613cab60b3b66b9ff94\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\14689f17ebc8a38d64b0d966647deb556c22830e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0bc7d00353088ebe3322abc50e64100de33c1733\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\1ee130c08e23aa3e2f7bfa0762a57c48ef67d865\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f0ace284b5ac712686d7a61bfb3bccac590f6ebc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\8cfa827eeaf0be5a78787b53f16b62e659edd774\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8bf568f33e0deceb215cd5f57d2dfc8017461c95\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\927e73b900e394f2aa554c28bc570396fcd39941\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8885570e6452148b9206ad61bde6c0226ad93569\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\b03932daf5f6b583726ae5de58cf769f70cad444\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1e385efd4e761990fceb57ed70623d750fedd9ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0-alpha1_cd524c656dfb03534911d9213ba95efde73db9a0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\58661037f10195d1a93c46093fe899f281415ff6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7ad8edb6595ae1f32a19afa088556bd6e2e44d7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\5ec1699f732d49010a49f22985928c19d59f604c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_929990c608bedf1d55d47e00c232f5ae82af9230\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\7632b00990b15146bb310419deeeb50401c466ce\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d6c3bb3bc96a3476293a6c2bbcbcbf3e4e1ee548\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Calvin\.android\build-cache\7a9152446f17e7bb049036423a6335e5dafd97b7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="C:\Users\Calvin\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6c07af43ac4b09491d3f424e0c3ca35fa3ac3b00\classes.dex" />
     </item>
 
 </items>
