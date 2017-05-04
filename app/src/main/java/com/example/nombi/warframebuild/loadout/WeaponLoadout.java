@@ -6,5 +6,9 @@ package com.example.nombi.warframebuild.loadout;
  * @version 17.05.04
  */
 
-public class WeaponLoadout extends Loadout {
+public class WeaponLoadout {
+
+    public WeaponLoadout() {
+
+    }
 }
