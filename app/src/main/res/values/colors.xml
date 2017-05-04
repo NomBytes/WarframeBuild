@@ -6,4 +6,9 @@
     <color name="wfPrimary">#151347</color>
     <color name="wfDark">#0c0b28</color>
     <color name="wfText">#dddddd</color>
+
+    <color name="wfPlat">#e5e4e2</color>
+    <color name="wfGold">#ffdf00</color>
+    <color name="wfSilver">#c0c0c0</color>
+    <color name ="wfBronze">#6c541e</color>
 </resources>
