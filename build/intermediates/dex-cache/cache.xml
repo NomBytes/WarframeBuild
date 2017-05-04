@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\nombi\AndroidStudioProjects\WarframeBuild\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="89af165311124d355f48fc89ea92ffb9bf1b22d7">
+        <dex dex="C:\Users\nombi\AndroidStudioProjects\WarframeBuild\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9cb89bd006c5e59359ed65199e9da286d3836db3\classes.dex" />
+    </item>
+
+</items>
