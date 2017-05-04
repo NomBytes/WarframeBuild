@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="wfPrimary">#151347</color>
+    <color name="wfDark">#0c0b28</color>
+    <color name="wfText">#dddddd</color>
 </resources>
