@@ -1,11 +1,16 @@
 package com.example.nombi.warframebuild.character;
 
 /**
- * Created by Calvin on 5/10/2017.
+ * Temporary database that contains the characters (mainly Warframes)
+ * to use their base stats for creating loadouts.
+ * @author Calvin
+ * @version 17.05.11
  */
-
 public final class CharacterDB {
 
+    /*
+     * Array of warframes' stats
+     */
     public static final double[][] WarframeStats = {
             {450, 300, 65, 150, 1.15, 100, 100, 100, 100}, //Ash
             {450, 300, 150, 150, 1.2, 100, 100, 100, 100}, //Ash Prime

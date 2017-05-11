@@ -1,12 +1,14 @@
 package com.example.nombi.warframebuild.character;
 
+import java.io.Serializable;
+
 /**
  * A character to create
  * @author Calvin
  * @version 17.05.02
  */
 
-abstract class Character {
+abstract class Character implements Serializable{
 
     //
     private double myHealth;

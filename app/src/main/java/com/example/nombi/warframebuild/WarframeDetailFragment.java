@@ -19,7 +19,7 @@ import org.w3c.dom.Text;
  */
 public class WarframeDetailFragment extends Fragment {
 
-    public final String WARFRAME_SELECTED = "warframe_selected";
+    public final static String WARFRAME_SELECTED = "warframe_selected";
 
     private TextView mName;
     private TextView mHealth;
