@@ -32,8 +32,8 @@ public class SignInActivity extends AppCompatActivity {
     EditText password;
     boolean loginSucess;
 
-    private final static String USER_ADD_URL
-            = "http://cssgate.insttech.washington.edu/~_450bteam13/adduser.php?";
+    private static String URL;
+
     private final static String USER_LOGIN
             = "http://cssgate.insttech.washington.edu/~_450bteam13/login.php?";
 
@@ -45,12 +45,14 @@ public class SignInActivity extends AppCompatActivity {
         register = (Button)findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                URL = "http://cssgate.insttech.washington.edu/~_450bteam13/adduser.php?";
                 register(v);
             }
         });
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                URL = "http://cssgate.insttech.washington.edu/~_450bteam13/login.php?";
                 login(v);
                 if(loginSucess){
 
@@ -114,7 +116,7 @@ public class SignInActivity extends AppCompatActivity {
     }
     private String buildUserURL(View v) {
 
-        StringBuilder sb = new StringBuilder(USER_ADD_URL);
+        StringBuilder sb = new StringBuilder(URL);
 
         try {
 
@@ -203,7 +205,7 @@ public class SignInActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
                 if (status.equals("success")) {
-                    loginSucess = true;
+
                     Toast.makeText(getApplicationContext(), "user successfully added!"
                             , Toast.LENGTH_LONG)
                             .show();
@@ -230,8 +232,10 @@ public class SignInActivity extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             String response = "";
             HttpURLConnection urlConnection = null;
+
+
             for(String u: urls){
-                Log.d("doinBackground",u);
+                Log.d("LogindoinBackground",u);
             }
 
             for (String url : urls) {
@@ -271,8 +275,8 @@ public class SignInActivity extends AppCompatActivity {
             // Something wrong with the network or the URL.
             Log.d("result", result);
 
-            /*List<user> userList = new ArrayList<user>();
-            result = user.parseUserJSON(result, userList);
+            List<user> userList = new ArrayList<user>();
+           /* result = user.parseUserJSON(result, userList);
             // Something wrong with the JSON returned.
             if (result != null) {
                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
@@ -284,6 +288,7 @@ public class SignInActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
                 if (status.equals("success")) {
+                    loginSucess = true;
                     Toast.makeText(getApplicationContext(), " successfully login!"
                             , Toast.LENGTH_LONG)
                             .show();

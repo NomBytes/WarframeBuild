@@ -43,8 +43,8 @@ public class user implements Serializable {
     public static String parseUserJSON(String userJSON, List<user> userList) {
         user u = null;
         String reason = null;
-
-        userJSON = "[" + userJSON +"]";
+        Log.d("userJson parseuser",userJSON);
+        //userJSON = "[" + userJSON +"]";
         if (userJSON != null) {
             try {
                 JSONArray arr = new JSONArray(userJSON);

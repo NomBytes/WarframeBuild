@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/wfPrimary</item>
         <item name="colorPrimaryDark">@color/wfDark</item>
         <item name="colorAccent">@color/wfText</item>
-        <item name="windowBackground">@color/wfDark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
