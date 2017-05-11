@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.nombi.warframebuild.character.CharacterDB;
 import com.example.nombi.warframebuild.character.Warframe;
 //import com.example.nombi.warframebuild.dummy.DummyContent;
 //import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,8 @@ import java.util.List;
  * interface.
  */
 public class WarframeFragment extends Fragment {
+
+    private static ArrayList<Warframe> warframes = new ArrayList<Warframe>();
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -52,6 +56,10 @@ public class WarframeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        for (Warframe warframe : CharacterDB.Warframes) {
+            warframes.add(warframe);
+        }
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -66,6 +74,11 @@ public class WarframeFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             mRecyclerView = (RecyclerView) view;
+            if (warframes.isEmpty()) {
+                for (Warframe warframe : CharacterDB.Warframes) {
+                    warframes.add(warframe);
+                }
+            }
             if (mColumnCount <= 1) {
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -107,6 +120,6 @@ public class WarframeFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Warframe item);
+        void onListFragmentInteraction(Warframe warframe);
     }
 }

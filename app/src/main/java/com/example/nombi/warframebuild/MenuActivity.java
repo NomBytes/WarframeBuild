@@ -7,23 +7,39 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class MenuActivity extends AppCompatActivity {
+import com.example.nombi.warframebuild.character.Warframe;
+
+public class MenuActivity extends AppCompatActivity implements
+        WarframeFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                WarframeFragment warframeFragment = new WarframeFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, warframeFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
+    }
+
+    @Override
+    public void onListFragmentInteraction(Warframe warframe) {
+        WarframeDetailFragment courseDetailFragment = new WarframeDetailFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(WarframeDetailFragment.WARFRAME_SELECTED, warframe);
+        courseDetailFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction().replace((R.id.fragment_container), courseDetailFragment)
+                .addToBackStack(null)
+                .commit();
+
     }
 
 }

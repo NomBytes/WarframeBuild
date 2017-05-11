@@ -66,8 +66,8 @@ public class MyWarframeRecyclerViewAdapter extends RecyclerView.Adapter<MyWarfra
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.warframe_char_name);
+            mContentView = (TextView) view.findViewById(R.id.warframe_armor);
         }
 
         @Override
