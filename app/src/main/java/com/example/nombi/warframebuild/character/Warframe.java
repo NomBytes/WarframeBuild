@@ -8,7 +8,7 @@ package com.example.nombi.warframebuild.character;
 
 public class Warframe extends Character {
 
-    public Warframe (int[] theAtts, double theSpeed, String theBase, String theName) {
-        super(theAtts, theSpeed, theBase, theName, "N/A", "Warframe");
+    public Warframe (double[] theAtts, String theBase, String theName) {
+        super(theAtts, theBase, theName, "N/A", "Warframe");
     }
 }

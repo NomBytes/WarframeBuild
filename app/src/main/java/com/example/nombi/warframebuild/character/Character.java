@@ -9,16 +9,16 @@ package com.example.nombi.warframebuild.character;
 abstract class Character {
 
     //
-    private int myHealth;
-    private int myShields;
-    private int myArmor;
-    private int myPower;
+    private double myHealth;
+    private double myShields;
+    private double myArmor;
+    private double myPower;
     private double mySprintSpeed;
 
-    private int myPwrRange;
-    private int myPwrStrength;
-    private int myPwrDuration;
-    private int myPwrEfficency;
+    private double myPwrRange;
+    private double myPwrStrength;
+    private double myPwrDuration;
+    private double myPwrEfficency;
 
     private String myType;
     private String myBase;
@@ -30,14 +30,13 @@ abstract class Character {
     /**
      * Creates a new character
      * @param theAtts The integer attributes a character holds
-     * @param theSpeed The sprint speed a warframe holds
      * @param theBase The base type of character
      * @param theName The Name of the character
      * @param theCompanionType The base companion type
      */
-    public Character(int[] theAtts, double theSpeed, String theBase, String theName,
+    public Character(double[] theAtts, String theBase, String theName,
               String theCompanionType, String theType) {
-        initializeStats(theAtts, theSpeed);
+        initializeStats(theAtts);
         myBase = theBase;
         myCharName = theName;
         myCompanionType = theCompanionType;
@@ -45,20 +44,20 @@ abstract class Character {
     }
 
     /////////////Constructor Helper Methods/////////////////
-    private void initializeStats(int[] theAtts, double theSpeed) {
+    private void initializeStats(double[] theAtts) {
         myHealth = theAtts[0];
         myShields = theAtts[1];
         myArmor = theAtts[2];
         myPower = theAtts[3];
-        mySprintSpeed = theSpeed;
-        myPwrRange = theAtts[4];
-        myPwrStrength = theAtts[5];
-        myPwrDuration = theAtts[6];
-        myPwrEfficency = theAtts[7];
+        mySprintSpeed = theAtts[4];
+        myPwrRange = theAtts[5];
+        myPwrStrength = theAtts[6];
+        myPwrDuration = theAtts[7];
+        myPwrEfficency = theAtts[8];
     }
 
 ///////////////Getters and Setters/////////////////
-    public int getMyHealth() {
+    public double getMyHealth() {
         return myHealth;
     }
 
@@ -66,7 +65,7 @@ abstract class Character {
         this.myHealth = myHealth;
     }
 
-    public int getMyShields() {
+    public double getMyShields() {
         return myShields;
     }
 
@@ -74,7 +73,7 @@ abstract class Character {
         this.myShields = myShields;
     }
 
-    public int getMyArmor() {
+    public double getMyArmor() {
         return myArmor;
     }
 
@@ -82,7 +81,7 @@ abstract class Character {
         this.myArmor = myArmor;
     }
 
-    public int getMyPower() {
+    public double getMyPower() {
         return myPower;
     }
 
@@ -98,7 +97,7 @@ abstract class Character {
         this.mySprintSpeed = mySprintSpeed;
     }
 
-    public int getMyPwrRange() {
+    public double getMyPwrRange() {
         return myPwrRange;
     }
 
@@ -106,7 +105,7 @@ abstract class Character {
         this.myPwrRange = myPwrRange;
     }
 
-    public int getMyPwrStrength() {
+    public double getMyPwrStrength() {
         return myPwrStrength;
     }
 
@@ -114,7 +113,7 @@ abstract class Character {
         this.myPwrStrength = myPwrStrength;
     }
 
-    public int getMyPwrDuration() {
+    public double getMyPwrDuration() {
         return myPwrDuration;
     }
 
@@ -122,7 +121,7 @@ abstract class Character {
         this.myPwrDuration = myPwrDuration;
     }
 
-    public int getMyPwrEfficency() {
+    public double getMyPwrEfficency() {
         return myPwrEfficency;
     }
 

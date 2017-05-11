@@ -8,7 +8,7 @@ package com.example.nombi.warframebuild.character;
 
 public class Companion extends Character {
 
-    public Companion (int[] theAtts, String theBase, String theName, String theCompanionType) {
-        super(theAtts, 0.0, theBase, theName, theCompanionType, "Companion");
+    public Companion (double[] theAtts, String theBase, String theName, String theCompanionType) {
+        super(theAtts, theBase, theName, theCompanionType, "Companion");
     }
 }

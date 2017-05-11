@@ -8,7 +8,7 @@ package com.example.nombi.warframebuild.character;
 
 public class Archwing extends Character {
 
-    public Archwing(int[] theAtts, String theBase, String theName) {
-        super(theAtts, 0.0, theBase, theName, "N/A", "Archwing");
+    public Archwing(double[] theAtts, String theBase, String theName) {
+        super(theAtts, theBase, theName, "N/A", "Archwing");
     }
 }
