@@ -43,7 +43,7 @@ public class user implements Serializable {
     public static String parseUserJSON(String userJSON, List<user> userList) {
         user u = null;
         String reason = null;
-        Log.d("userJson parseuser",userJSON);
+        Log.d("userJson parse user",userJSON);
         //userJSON = "[" + userJSON +"]";
         if (userJSON != null) {
             try {
