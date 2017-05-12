@@ -85,6 +85,9 @@ public class WarframeFragment extends Fragment {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
+            mRecyclerView.setAdapter(new MyWarframeRecyclerViewAdapter(warframes,mListener));
+
+
         }
         return view;
     }

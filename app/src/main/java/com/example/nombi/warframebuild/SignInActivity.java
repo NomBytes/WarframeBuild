@@ -1,5 +1,6 @@
 package com.example.nombi.warframebuild;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -39,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //loginSucess = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         login = (Button)findViewById(R.id.login);
@@ -56,6 +58,7 @@ public class SignInActivity extends AppCompatActivity {
                 login(v);
                 if(loginSucess){
 
+                    //setContentView(R.layout.activity_menu);
                 }
 
             }
@@ -288,7 +291,9 @@ public class SignInActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
                 if (status.equals("success")) {
-                    loginSucess = true;
+                    //loginSucess = true;
+                    Intent i = new Intent(getApplicationContext(),MenuActivity.class);
+                    startActivity(i);
                     Toast.makeText(getApplicationContext(), " successfully login!"
                             , Toast.LENGTH_LONG)
                             .show();

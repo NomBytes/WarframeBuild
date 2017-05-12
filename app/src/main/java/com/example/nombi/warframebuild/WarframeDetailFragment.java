@@ -33,6 +33,7 @@ public class WarframeDetailFragment extends Fragment {
     private TextView mPwrDuration;
     private TextView mPwrEfficency;
 
+    private Warframe mWarframeItem;
     private OnFragmentInteractionListener mListener;
 
 
@@ -47,6 +48,7 @@ public class WarframeDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_warframe_detail, container, false);
 
+
         mName = (TextView) view.findViewById((R.id.warframe_char_name));
         mHealth = (TextView) view.findViewById((R.id.warframe_health));
         mShields = (TextView) view.findViewById((R.id.warframe_shields));
@@ -57,6 +59,20 @@ public class WarframeDetailFragment extends Fragment {
         mPwrStrength = (TextView) view.findViewById((R.id.warframe_pwr_strength));
         mPwrDuration = (TextView) view.findViewById((R.id.warframe_pwr_duration));
         mPwrEfficency = (TextView) view.findViewById((R.id.warframe_pwr_efficency));
+
+        mName.setText("testing");
+        if (mWarframeItem != null) {
+            mName.setText(mWarframeItem.getMyCharName());
+            mHealth.setText("Health: " + mWarframeItem.getMyHealth());
+            mShields.setText("Shields: " + mWarframeItem.getMyShields());
+            mArmor.setText("Armor: " + mWarframeItem.getMyArmor());
+            mPower.setText("Power: " + mWarframeItem.getMyPower());
+            mSprintSpeed.setText("Speed: " + mWarframeItem.getMySprintSpeed());
+            mPwrRange.setText("Power Range: " + mWarframeItem.getMyPwrRange());
+            mPwrStrength.setText("Power Strength: " + mWarframeItem.getMyPwrStrength());
+            mPwrDuration.setText("Power Duration: " + mWarframeItem.getMyPwrDuration());
+            mPwrEfficency.setText("Power Efficency: " + mWarframeItem.getMyPwrEfficency());
+        }
 
         return view;
     }
@@ -75,6 +91,16 @@ public class WarframeDetailFragment extends Fragment {
             mPwrEfficency.setText("Power Efficency: " + warframe.getMyPwrEfficency());
         }
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mWarframeItem = (Warframe)
+                    getArguments().getSerializable("detail_param");
+        }
+    }
+
 
     @Override
     public void onStart() {
@@ -99,6 +125,20 @@ public class WarframeDetailFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @return A new instance of fragment CourseDetailFragment.
+     */
+    public static WarframeDetailFragment getWarframeDetailFragment(
+            Warframe warframe) {
+        WarframeDetailFragment fragment = new WarframeDetailFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("detail_param", warframe);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }

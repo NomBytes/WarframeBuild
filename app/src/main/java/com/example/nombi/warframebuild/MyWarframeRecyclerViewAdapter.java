@@ -40,6 +40,7 @@ public class MyWarframeRecyclerViewAdapter extends RecyclerView.Adapter<MyWarfra
         holder.mIdView.setText(mValues.get(position).getMyCharName());
         holder.mContentView.setText(mValues.get(position).getMyType());
 
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

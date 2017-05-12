@@ -3,6 +3,7 @@ package com.example.nombi.warframebuild;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -31,15 +32,16 @@ public class MenuActivity extends AppCompatActivity implements
 
     @Override
     public void onListFragmentInteraction(Warframe warframe) {
-        WarframeDetailFragment courseDetailFragment = new WarframeDetailFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(WarframeDetailFragment.WARFRAME_SELECTED, warframe);
-        courseDetailFragment.setArguments(args);
+        WarframeDetailFragment detailFragment
+                = WarframeDetailFragment.getWarframeDetailFragment(warframe);
 
-        getSupportFragmentManager().beginTransaction().replace((R.id.fragment_container), courseDetailFragment)
-                .addToBackStack(null)
-                .commit();
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null);
 
+        // Commit the transaction
+        transaction.commit();
     }
 
 }
