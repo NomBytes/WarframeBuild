@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.example.nombi.warframebuild.character.Warframe;
@@ -32,6 +33,9 @@ public class MenuActivity extends AppCompatActivity implements
 
     @Override
     public void onListFragmentInteraction(Warframe warframe) {
+        if(warframe != null){
+            Log.d("insideOnlistFragment", "warframe isn't nul");
+        }
         WarframeDetailFragment detailFragment
                 = WarframeDetailFragment.getWarframeDetailFragment(warframe);
 

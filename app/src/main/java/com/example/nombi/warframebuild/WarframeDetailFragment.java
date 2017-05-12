@@ -34,7 +34,7 @@ public class WarframeDetailFragment extends Fragment {
     private TextView mPwrEfficency;
 
     private Warframe mWarframeItem;
-    private OnFragmentInteractionListener mListener;
+   // private OnFragmentInteractionListener mListener;
 
 
     public WarframeDetailFragment() {
@@ -97,7 +97,7 @@ public class WarframeDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mWarframeItem = (Warframe)
-                    getArguments().getSerializable("detail_param");
+                    getArguments().getSerializable(WARFRAME_SELECTED);
         }
     }
 
@@ -116,16 +116,17 @@ public class WarframeDetailFragment extends Fragment {
             updateView((Warframe) args.getSerializable(WARFRAME_SELECTED));
         }
     }
-
+    /*
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+    */
 
-    public interface OnFragmentInteractionListener {
+   /* public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
-    }
+    }*/
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -135,8 +136,9 @@ public class WarframeDetailFragment extends Fragment {
     public static WarframeDetailFragment getWarframeDetailFragment(
             Warframe warframe) {
         WarframeDetailFragment fragment = new WarframeDetailFragment();
+        //fragment.updateView(warframe);
         Bundle args = new Bundle();
-        args.putSerializable("detail_param", warframe);
+        args.putSerializable(WARFRAME_SELECTED, warframe);
         fragment.setArguments(args);
         return fragment;
     }
