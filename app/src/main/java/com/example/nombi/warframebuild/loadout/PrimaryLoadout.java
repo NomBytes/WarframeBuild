@@ -6,9 +6,9 @@ package com.example.nombi.warframebuild.loadout;
  * @version 17.05.04
  */
 
-public class WeaponLoadout {
+public class PrimaryLoadout {
 
-    public WeaponLoadout() {
+    public PrimaryLoadout() {
 
     }
 }

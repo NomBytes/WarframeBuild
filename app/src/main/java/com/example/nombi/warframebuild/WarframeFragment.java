@@ -1,20 +1,28 @@
 package com.example.nombi.warframebuild;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.nombi.warframebuild.character.CharacterDB;
 import com.example.nombi.warframebuild.character.Warframe;
 //import com.example.nombi.warframebuild.dummy.DummyContent;
 //import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +42,9 @@ public class WarframeFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
+
+    private static final String Warframe_URL
+            = "http://cssgate.insttech.washington.edu/~_450bteam13/warframes.php?";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -85,7 +96,10 @@ public class WarframeFragment extends Fragment {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            mRecyclerView.setAdapter(new MyWarframeRecyclerViewAdapter(warframes,mListener));
+            DownloadWarframeTask task = new DownloadWarframeTask();
+            task.execute(new String[]{Warframe_URL});
+
+            //mRecyclerView.setAdapter(new MyWarframeRecyclerViewAdapter(warframes,mListener));
 
 
         }
@@ -125,4 +139,79 @@ public class WarframeFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Warframe warframe);
     }
+
+    private class DownloadWarframeTask extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            for (String url : urls) {
+                try {
+                    URL urlObject = new URL(url);
+                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+
+                    InputStream content = urlConnection.getInputStream();
+
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    String s = "";
+                    while ((s = buffer.readLine()) != null) {
+                        response += s;
+                    }
+
+                } catch (Exception e) {
+                    response = "Unable to download the list of courses, Reason: "
+                            + e.getMessage();
+                } finally {
+                    if (urlConnection != null)
+                        urlConnection.disconnect();
+                }
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Something wrong with the network or the URL.
+
+
+            // Something wrong with the network or the URL.
+            if (result.startsWith("Unable to")) {
+                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+
+
+
+
+
+            Log.d("result", result);
+            if (result.startsWith("Unable to")) {
+                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+
+            List<Warframe> courseList = new ArrayList<Warframe>();
+            result = Warframe.parseCourseJSON(result, courseList);
+            // Something wrong with the JSON returned.
+            if (result != null) {
+                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+
+            // Everything is good, show the list of courses.
+            if (!courseList.isEmpty()) {
+                Log.d("POSTEXECUTE","list is not empty");
+
+                mRecyclerView.setAdapter(new MyWarframeRecyclerViewAdapter(courseList, mListener));
+            }
+        }
+
+
+    }
 }
+
