@@ -15,10 +15,6 @@ public class Mod {
     private int myBaseCost;
     private int myMaxLevel;
 
-    //Type-related
-    private String myBaseType;
-    private String mySubType;
-
     private int myPolarity;
 
     //Rarity
