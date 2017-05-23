@@ -10,6 +10,7 @@ public class Mod {
     //Name and Rarity
     private String myName;
     private int myRarity;
+    private int myType;
 
     //Cost-related
     private int myBaseCost;
@@ -29,11 +30,9 @@ public class Mod {
     private static int POLARITY_VAZARIN = 2;
     private static int POLARITY_NARAMON = 3;
     private static int POLARITY_ZENURIK = 4;
-    private static int POLARITY_PENJAGA = 5;
-    private static int POLARITY_UNAIRU  = 6;
+
 
     //Mod type
     private static int MODTYPE_NORMAL   = 0;
     private static int MODTYPE_AURA     = 1;
-    private static int MODTYPE_STANCE   = 2;
 }
