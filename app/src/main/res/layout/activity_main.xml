@@ -33,7 +33,7 @@
         android:layout_marginTop="286dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/email"
+        android:text="email@email.com"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

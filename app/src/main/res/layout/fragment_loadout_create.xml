@@ -34,6 +34,12 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/warframe_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="warframe" />
+
     <CheckBox
         android:id="@+id/reactor_checkbox"
         android:layout_width="match_parent"
@@ -41,6 +47,7 @@
         android:checked="true"
         android:text="Orokin Reactor Installed?"
         android:textAlignment="textStart"
+        android:layout_gravity="start"
         android:textSize="18sp" />
 
     <TextView
@@ -54,100 +61,122 @@
         android:textStyle="bold"
         android:typeface="sans" />
 
-    <TextView
-        android:id="@+id/aura_mod_text"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="AURA MOD"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/mod1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Aura Mod" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/aura_mod_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AURA MOD"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/mod1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aura Mod" />
 
-    <TextView
-        android:id="@+id/exilus_mod_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="EXILUS MOD"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/exilus_mod_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EXILUS MOD"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/mod2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exilus Mod" />
 
-    <Button
-        android:id="@+id/mod2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Exilus Mod" />
 
-    <TextView
-        android:id="@+id/other_mods_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="OTHER MODS"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/other_mods_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OTHER MODS"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/mod3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 3" />
+            <Button
+                android:id="@+id/mod3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 3" />
 
-    <Button
-        android:id="@+id/mod4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 4" />
+            <Button
+                android:id="@+id/mod4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 4" />
 
-    <Button
-        android:id="@+id/mod5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 5" />
+            <Button
+                android:id="@+id/mod5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 5" />
 
-    <Button
-        android:id="@+id/mod6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 6" />
+            <Button
+                android:id="@+id/mod6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 6" />
 
-    <Button
-        android:id="@+id/mod7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 7" />
+            <Button
+                android:id="@+id/mod7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 7" />
 
-    <Button
-        android:id="@+id/mod8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 8" />
+            <Button
+                android:id="@+id/mod9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 9" />
 
-    <Button
-        android:id="@+id/mod9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 9" />
 
-    <Button
-        android:id="@+id/mod10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mod 10" />
 
-    <Button
-        android:id="@+id/view_stats_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="VIEW STATS" />
+
+
+
+            <Button
+                android:id="@+id/mod8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 8" />
+
+            <Button
+                android:id="@+id/view_stats_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="VIEW STATS" />
+
+            <Button
+                android:id="@+id/mod10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 10" />
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
