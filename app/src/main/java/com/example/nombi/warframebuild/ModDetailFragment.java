@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.nombi.warframebuild.loadout.Mod;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +24,7 @@ public class ModDetailFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String MOD_SELECTED = "selected_mod";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -73,7 +76,7 @@ public class ModDetailFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
+    /*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -84,6 +87,7 @@ public class ModDetailFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+    */
 
     @Override
     public void onDetach() {
@@ -104,5 +108,21 @@ public class ModDetailFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @return A new instance of fragment CourseDetailFragment.
+     */
+    public static ModDetailFragment getModDetailFragment (
+            Mod m) {
+        ModDetailFragment fragment = new ModDetailFragment();
+        //fragment.updateView(warframe);
+        Bundle args = new Bundle();
+        args.putSerializable(MOD_SELECTED, m);
+        fragment.setArguments(args);
+        return fragment;
     }
 }

@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.nombi.warframebuild.character.Warframe;
+import com.example.nombi.warframebuild.loadout.Mod;
 
 public class MenuActivity extends AppCompatActivity implements
-        WarframeFragment.OnListFragmentInteractionListener, LoadoutCreateFragment.OnFragmentInteractionListener{
+        WarframeFragment.OnListFragmentInteractionListener, /*LoadoutCreateFragment.OnFragmentInteractionListener,*/
+        ModFragment.OnListModInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,25 @@ public class MenuActivity extends AppCompatActivity implements
         // Commit the transaction
         transaction.commit();
     }
-
+    /*
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+    */
+
+    @Override
+    public void OnListModInteractionListener(Mod m) {
+        Fragment detailFragment
+                = ModDetailFragment.getModDetailFragment(m);
+
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
 
     }
 }

@@ -33,6 +33,20 @@ public class LoadoutCreateFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            Fragment modFragment = new ModFragment();
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.fragment_container, modFragment)
+                    .commit();
+
+        }
+    };
+
     public LoadoutCreateFragment() {
         // Required empty public constructor
     }
@@ -74,6 +88,10 @@ public class LoadoutCreateFragment extends Fragment {
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
 
+        Button mod1Button = (Button) view.findViewById(R.id.mod1);
+
+        mod1Button.setOnClickListener(onClickListener);
+
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
         floatingActionButton.hide();
@@ -101,6 +119,7 @@ public class LoadoutCreateFragment extends Fragment {
     }
 
 
+    /*
 
     @Override
     public void onAttach(Context context) {
@@ -112,7 +131,7 @@ public class LoadoutCreateFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
+    */
 
     @Override
     public void onDetach() {

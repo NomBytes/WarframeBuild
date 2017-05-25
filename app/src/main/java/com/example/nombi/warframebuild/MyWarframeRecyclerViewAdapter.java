@@ -39,7 +39,7 @@ public class MyWarframeRecyclerViewAdapter extends RecyclerView.Adapter<MyWarfra
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getMyCharName());
-        holder.mContentView.setText(mValues.get(position).getMyType());
+        holder.mContentView.setText(mValues.get(position).getMyType());//this is where the n/a is coming from
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

@@ -53,7 +53,7 @@ public class Warframe extends Character {
                             obj.getDouble(Warframe.EFFICENCY)};
 
                     Warframe warframes = new Warframe(atts, obj.getString(Warframe.COMPTYPE),
-                            obj.getString(Warframe.BASE));
+                            obj.getString(Warframe.CHARA));
                     warframeList.add(warframes);
                 }
             } catch (JSONException e) {

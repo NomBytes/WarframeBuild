@@ -294,6 +294,7 @@ public class SignInActivity extends AppCompatActivity {
                     //loginSucess = true;
                     Intent i = new Intent(getApplicationContext(),MenuActivity.class);
                     startActivity(i);
+                    finish();
                     Toast.makeText(getApplicationContext(), " successfully login!"
                             , Toast.LENGTH_LONG)
                             .show();
