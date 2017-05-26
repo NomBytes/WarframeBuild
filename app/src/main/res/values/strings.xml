@@ -2,7 +2,12 @@
     <string name="app_name">WarframeBuild</string>
     <string name="email">Email</string>
     <string name="password">password</string>
+    <string name="LOGIN_PREFS">edu.tacoma.uw.warframebuild.PREFS</string>
+    <string name="LOGGEDIN">loggedin</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">settings</string>
+    <string name="action_logout">Logout</string>
 </resources>

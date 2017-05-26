@@ -1,6 +1,8 @@
 package com.example.nombi.warframebuild;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -32,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     boolean loginSucess;
+    private SharedPreferences mSharedPreferences;
 
     private static String URL;
 
@@ -45,6 +48,16 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         login = (Button)findViewById(R.id.login);
         register = (Button)findViewById(R.id.register);
+        mSharedPreferences = getSharedPreferences(getString(R.string.LOGIN_PREFS)
+                , Context.MODE_PRIVATE);
+        if(mSharedPreferences.getBoolean(getString(R.string.LOGGEDIN),true)){
+
+            Intent i = new Intent(getApplicationContext(),MenuActivity.class);
+            startActivity(i);
+            finish();
+
+        }
+
         register.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 URL = "http://cssgate.insttech.washington.edu/~_450bteam13/adduser.php?";
@@ -292,6 +305,12 @@ public class SignInActivity extends AppCompatActivity {
                 String status = (String) jsonObject.get("result");
                 if (status.equals("success")) {
                     //loginSucess = true;
+
+                    mSharedPreferences
+                            .edit()
+                            .putBoolean(getString(R.string.LOGGEDIN), true)
+                            .commit();
+
                     Intent i = new Intent(getApplicationContext(),MenuActivity.class);
                     startActivity(i);
                     finish();
