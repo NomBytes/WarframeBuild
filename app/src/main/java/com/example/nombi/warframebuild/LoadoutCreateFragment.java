@@ -96,7 +96,7 @@ public class LoadoutCreateFragment extends Fragment {
                 getActivity().findViewById(R.id.fab);
         floatingActionButton.hide();
 
-        warframe_b.setOnClickListener( new View.OnClickListener(){
+        warframe_b.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()

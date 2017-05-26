@@ -38,6 +38,8 @@ public class WarframeFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+
+    public static final String WAR_SELECTED = "warframe_selected";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;

@@ -54,6 +54,9 @@ public class ModFragment extends Fragment {
     public ModFragment() {
     }
 
+    /**
+     * allows activity to communicate with list item.
+     */
     public interface OnListModInteractionListener{
 
         void OnListModInteractionListener(Mod m);

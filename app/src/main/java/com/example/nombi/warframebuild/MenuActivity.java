@@ -45,6 +45,11 @@ public class MenuActivity extends AppCompatActivity implements
         });
     }
 
+    /**
+     * ingflates stuff in the action bar.
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu_warframe; this adds items to the action bar if it is present.
@@ -52,6 +57,11 @@ public class MenuActivity extends AppCompatActivity implements
         return true;
     }
 
+    /**
+     *
+     * @param item button being pressed
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -81,6 +91,11 @@ public class MenuActivity extends AppCompatActivity implements
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * communicates with the warframe fragment when selecting an item on the list.
+     * @param warframe
+     */
     @Override
     public void onListFragmentInteraction(Warframe warframe) {
         if(warframe != null){
@@ -103,6 +118,10 @@ public class MenuActivity extends AppCompatActivity implements
 
     }
     */
+
+    /**
+     * allows to go back to the previous screen
+     */
     @Override
     public void onBackPressed(){
         super.onBackPressed();
@@ -111,6 +130,10 @@ public class MenuActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * callls the detail fragment when mod item is pressed on the list.
+     * @param m
+     */
     @Override
     public void OnListModInteractionListener(Mod m) {
         Fragment detailFragment
