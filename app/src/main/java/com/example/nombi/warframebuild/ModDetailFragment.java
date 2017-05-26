@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.nombi.warframebuild.loadout.Mod;
 
@@ -25,12 +26,20 @@ public class ModDetailFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     public static final String MOD_SELECTED = "selected_mod";
+
+    private TextView mModName;
+    private TextView mModLevel;
+    private TextView mModCost;
+    private TextView mAttribute;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     Button changeMod;
+    Button clearMod;
+    Button backToLoadout;
     private OnFragmentInteractionListener mListener;
     ModFragment modFrag = new ModFragment();
 
@@ -70,7 +79,15 @@ public class ModDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mod_detail, container, false);
+
+        mModName = (TextView) v.findViewById(R.id.mod_name);
+        mModLevel = (TextView) v.findViewById(R.id.level_number);
+        mModCost = (TextView) v.findViewById(R.id.mod_cost_text);
+        mAttribute = (TextView) v.findViewById(R.id.mod_effect_1);
+
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
+        clearMod = (Button) v.findViewById(R.id.clear_mod_button);
+        backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
 
         changeMod.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
