@@ -4,14 +4,18 @@ package com.example.nombi.warframebuild;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nombi.warframebuild.character.Warframe;
 
 import org.w3c.dom.Text;
+
+import java.net.URLEncoder;
 
 
 /**
@@ -142,5 +146,42 @@ public class WarframeDetailFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+/**
+    private String buildCourseURL(View v) {
+
+        //StringBuilder sb = new StringBuilder(COURSE_ADD_URL);
+
+        try {
+
+
+            String courseId = mCourseIdEditText.getText().toString();
+            sb.append("id=");
+            sb.append(courseId);
+
+
+            String courseShortDesc = mCourseShortDescEditText.getText().toString();
+            sb.append("&shortDesc=");
+            sb.append(URLEncoder.encode(courseShortDesc, "UTF-8"));
+
+
+            String courseLongDesc = mCourseLongDescEditText.getText().toString();
+            sb.append("&longDesc=");
+            sb.append(URLEncoder.encode(courseLongDesc, "UTF-8"));
+
+            String coursePrereqs = mCoursePrereqsEditText.getText().toString();
+            sb.append("&prereqs=");
+            sb.append(URLEncoder.encode(coursePrereqs, "UTF-8"));
+
+            Log.i("CourseAddFragment", sb.toString());
+
+
+        }
+        catch(Exception e) {
+            Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+        return sb.toString();
+    }
+ **/
 
 }

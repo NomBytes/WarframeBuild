@@ -5,10 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.nombi.warframebuild.loadout.Mod;
 
 
 /**
@@ -25,6 +28,13 @@ public class LoadoutCreateFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    public static final String MOD_SELECTED = "selected_mod";
+
+    Button mod1Button;
+    Button mod2Button;
+    Button mod3Button;
+    Button mod4Button;
+
     Fragment FRAG = new WarframeFragment();
 
     // TODO: Rename and change types of parameters
@@ -37,7 +47,7 @@ public class LoadoutCreateFragment extends Fragment {
 
         @Override
         public void onClick(final View v) {
-            Fragment modFragment = new ModFragment();
+            Fragment modFragment = new ModDetailFragment();
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack(null)
@@ -88,9 +98,11 @@ public class LoadoutCreateFragment extends Fragment {
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
 
-        Button mod1Button = (Button) view.findViewById(R.id.mod1);
+        mod1Button = (Button) view.findViewById(R.id.mod1);
 
         mod1Button.setOnClickListener(onClickListener);
+
+        mod2Button = (Button) view.findViewById(R.id.mod2);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
@@ -110,6 +122,39 @@ public class LoadoutCreateFragment extends Fragment {
 
         return view;
     }
+    /*
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // During startup, check if there are arguments passed to the fragment.
+        // onStart is a good place to do this because the layout has already been
+        // applied to the fragment at this point so we can safely call the method
+        // below that sets the article text.
+        Bundle args = getArguments();
+        if (args != null) {
+            // Set article based on argument passed in
+            updateView((Mod) args.getSerializable(MOD_SELECTED));
+        }
+    }
+
+    public void updateView(Mod m) {
+        if (m != null) {
+            Log.d("udate view editfragment","course not null");
+            mod1Button.setText(m.getMyName());
+
+            //mCourseIdEditText.setText(course.getCourseId());
+           // mCourseShortDescEditText .setText(course.getShortDescription());
+            //mCourseLongDescEditText.setText(course.getLongDescription());
+           // mCoursePrereqsEditText.setText(course.getPreReqs());
+
+        }
+
+        //bun.putString("id",mCourseIdTextView.toString());
+
+    }
+    */
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

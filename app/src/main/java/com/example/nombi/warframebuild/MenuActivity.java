@@ -24,6 +24,8 @@ public class MenuActivity extends AppCompatActivity implements
         WarframeFragment.OnListFragmentInteractionListener, /*LoadoutCreateFragment.OnFragmentInteractionListener,*/
         ModFragment.OnListModInteractionListener{
 
+    Bundle args = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,8 @@ public class MenuActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 Fragment LoadoutCreateFragment = new LoadoutCreateFragment();
+
+                LoadoutCreateFragment.setArguments(args);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, LoadoutCreateFragment)
                         .addToBackStack(null)
                         .commit();
@@ -101,8 +105,13 @@ public class MenuActivity extends AppCompatActivity implements
         if(warframe != null){
             Log.d("insideOnlistFragment", "warframe isn't nul");
         }
+
+
         WarframeDetailFragment detailFragment
                 = WarframeDetailFragment.getWarframeDetailFragment(warframe);
+
+        args.putSerializable(detailFragment.WARFRAME_SELECTED,warframe);
+
 
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
@@ -136,13 +145,19 @@ public class MenuActivity extends AppCompatActivity implements
      */
     @Override
     public void OnListModInteractionListener(Mod m) {
-        Fragment detailFragment
+        ModDetailFragment detailFragment
                 = ModDetailFragment.getModDetailFragment(m);
+
+
+        args.putSerializable(detailFragment.MOD_SELECTED,m);
+
+
 
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, detailFragment)
                 .addToBackStack(null);
+
 
         // Commit the transaction
         transaction.commit();
