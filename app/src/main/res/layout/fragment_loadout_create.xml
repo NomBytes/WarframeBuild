@@ -7,6 +7,12 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <Button
+        android:id="@+id/create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create"/>
+
     <EditText
         android:id="@+id/loadout_name"
         android:layout_width="match_parent"

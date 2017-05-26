@@ -127,4 +127,36 @@ public class WarframeLoadout implements Serializable {
         }
     }
 
+    public String getMyLoadoutName() {
+        return myLoadoutName;
+    }
+
+    public String getMyAuthor() {
+        return myAuthor;
+    }
+
+    public Warframe getMyWarframe() {
+        return myWarframe;
+    }
+
+    public Boolean getMyReactor() {
+        return myReactor;
+    }
+
+    public Mod[] getMyMods() {
+        return myMods;
+    }
+
+    public int[] getMyPolarities() {
+        return myPolarities;
+    }
+
+    public double[] getMyUpdatedAtts() {
+        return myUpdatedAtts;
+    }
+
+    public int getMyCapacity() {
+        return myCapacity;
+    }
+
 }

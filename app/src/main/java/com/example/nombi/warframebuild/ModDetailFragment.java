@@ -89,6 +89,7 @@ public class ModDetailFragment extends Fragment {
         clearMod = (Button) v.findViewById(R.id.clear_mod_button);
         backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
 
+
         changeMod.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 getActivity().getSupportFragmentManager()
@@ -113,11 +114,11 @@ public class ModDetailFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof createLoadoutInteractionListener) {
+            mListener = (createLoadoutInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement createLoadoutInteractionListener");
         }
     }
     */

@@ -5,19 +5,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.nombi.warframebuild.loadout.Mod;
+import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoadoutCreateFragment.OnFragmentInteractionListener} interface
+ * {@link createLoadoutInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoadoutCreateFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -30,10 +29,13 @@ public class LoadoutCreateFragment extends Fragment {
 
     public static final String MOD_SELECTED = "selected_mod";
 
+    Button create_button;
+
     Button mod1Button;
     Button mod2Button;
     Button mod3Button;
     Button mod4Button;
+
 
     Fragment FRAG = new WarframeFragment();
 
@@ -41,7 +43,7 @@ public class LoadoutCreateFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private createLoadoutInteractionListener mListener;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
 
@@ -56,6 +58,13 @@ public class LoadoutCreateFragment extends Fragment {
 
         }
     };
+    private Button mod4button;
+    private Button mod5Button;
+    private Button mod6Button;
+    private Button mod7Button;
+    private Button mod8Button;
+    private Button mod9Button;
+    private Button mod10Button;
 
     public LoadoutCreateFragment() {
         // Required empty public constructor
@@ -98,15 +107,40 @@ public class LoadoutCreateFragment extends Fragment {
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
 
+        create_button = (Button) view.findViewById(R.id.create);
+
         mod1Button = (Button) view.findViewById(R.id.mod1);
+        mod2Button = (Button) view.findViewById(R.id.mod2);
+        mod3Button = (Button) view.findViewById(R.id.mod3);
+        mod4button = (Button) view.findViewById(R.id.mod4);
+        mod5Button = (Button) view.findViewById(R.id.mod5);
+        mod6Button = (Button) view.findViewById(R.id.mod6);
+        mod7Button = (Button) view.findViewById(R.id.mod7);
+        mod8Button = (Button) view.findViewById(R.id.mod8);
+        mod9Button = (Button) view.findViewById(R.id.mod9);
+        mod10Button= (Button) view.findViewById(R.id.mod10);
 
         mod1Button.setOnClickListener(onClickListener);
+        mod2Button.setOnClickListener(onClickListener);
+        mod3Button.setOnClickListener(onClickListener);
+        mod4Button.setOnClickListener(onClickListener);
+        mod5Button.setOnClickListener(onClickListener);
+        mod6Button.setOnClickListener(onClickListener);
+        mod7Button.setOnClickListener(onClickListener);
+        mod8Button.setOnClickListener(onClickListener);
+        mod9Button.setOnClickListener(onClickListener);
+        mod10Button.setOnClickListener(onClickListener);
 
-        mod2Button = (Button) view.findViewById(R.id.mod2);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
         floatingActionButton.hide();
+        create_button.setOnClickListener( new View.OnClickListener(){
+            public void onClick(View v){
+
+
+            }
+        });
 
         warframe_b.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
@@ -155,28 +189,29 @@ public class LoadoutCreateFragment extends Fragment {
     }
     */
 
-
+/*
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onCreateLoadFragInteraction(uri);
         }
     }
+    */
 
 
-    /*
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof createLoadoutInteractionListener) {
+            mListener = (createLoadoutInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement createLoadoutInteractionListener");
         }
     }
-    */
+
 
     @Override
     public void onDetach() {
@@ -194,8 +229,8 @@ public class LoadoutCreateFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface createLoadoutInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onCreateLoadFragInteraction(WarframeLoadout w);
     }
 }

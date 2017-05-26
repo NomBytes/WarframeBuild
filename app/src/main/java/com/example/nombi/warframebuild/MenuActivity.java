@@ -19,10 +19,12 @@ import android.view.View;
 
 import com.example.nombi.warframebuild.character.Warframe;
 import com.example.nombi.warframebuild.loadout.Mod;
+import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 public class MenuActivity extends AppCompatActivity implements
-        WarframeFragment.OnListFragmentInteractionListener, /*LoadoutCreateFragment.OnFragmentInteractionListener,*/
-        ModFragment.OnListModInteractionListener{
+        WarframeFragment.OnListFragmentInteractionListener, /*LoadoutCreateFragment.createLoadoutInteractionListener,*/
+        ModFragment.OnListModInteractionListener,
+        LoadoutCreateFragment.createLoadoutInteractionListener{
 
     Bundle args = new Bundle();
 
@@ -123,7 +125,7 @@ public class MenuActivity extends AppCompatActivity implements
     }
     /*
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onCreateLoadFragInteraction(Uri uri) {
 
     }
     */
@@ -149,7 +151,7 @@ public class MenuActivity extends AppCompatActivity implements
                 = ModDetailFragment.getModDetailFragment(m);
 
 
-        args.putSerializable(detailFragment.MOD_SELECTED,m);
+        //args.putSerializable(detailFragment.MOD_SELECTED,m);
 
 
 
@@ -161,6 +163,12 @@ public class MenuActivity extends AppCompatActivity implements
 
         // Commit the transaction
         transaction.commit();
+
+    }
+
+    @Override
+    public void onCreateLoadFragInteraction(WarframeLoadout w) {
+        //WarframeDetailFragment detailFragment = WarframeDetailFragment.WARFRAME_SELECTED(w)
 
     }
 }

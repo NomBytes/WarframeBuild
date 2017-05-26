@@ -38,7 +38,7 @@ public class WarframeDetailFragment extends Fragment {
     private TextView mPwrEfficency;
 
     private Warframe mWarframeItem;
-   // private OnFragmentInteractionListener mListener;
+   // private createLoadoutInteractionListener mListener;
     private static final String ADD_URL =
             "http://cssgate.insttech.washington.edu/~_450bteam13/setWarframe.php";
 
@@ -143,8 +143,8 @@ public class WarframeDetailFragment extends Fragment {
     }
     */
 
-   /* public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
+   /* public interface createLoadoutInteractionListener {
+        void onCreateLoadFragInteraction(Uri uri);
     }*/
     /**
      * Use this factory method to create a new instance of
