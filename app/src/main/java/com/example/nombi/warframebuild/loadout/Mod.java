@@ -62,6 +62,16 @@ public class Mod implements Serializable {
         this.myPolarity = myPolarity;
     }
 
+    public int calculateCost(int theSlotPolarity, int theModLevel) {
+        int result = myBaseCost + theModLevel;
+        if (theSlotPolarity == myPolarity) {
+            result = result / 2;
+        } else if (theSlotPolarity != 0) {
+            result = (int)(result * 1.25);
+        }
+        return result;
+    }
+
 
     public String getMyName() {
         return myName;
