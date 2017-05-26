@@ -92,7 +92,7 @@ public class SignInActivity extends AppCompatActivity {
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
         String URL = buildUserURL(v);
-        Log.d("url",URL);
+        //Log.d("url",URL);
         addUser(URL);
 
 

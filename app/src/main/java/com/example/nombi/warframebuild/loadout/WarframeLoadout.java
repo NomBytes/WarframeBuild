@@ -2,12 +2,14 @@ package com.example.nombi.warframebuild.loadout;
 
 import com.example.nombi.warframebuild.character.Warframe;
 
+import java.io.Serializable;
+
 /**
  * A loadout for a Warframe.
  * @author Calvin
  * @version 17.05.04
  */
-public class WarframeLoadout {
+public class WarframeLoadout implements Serializable {
 
     private String myLoadoutName; /* The name of the loadout. */
     private String myAuthor;      /* The author of the loadout */

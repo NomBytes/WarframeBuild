@@ -39,13 +39,20 @@ public class WarframeDetailFragment extends Fragment {
 
     private Warframe mWarframeItem;
    // private OnFragmentInteractionListener mListener;
-
+    private static final String ADD_URL =
+            "http://cssgate.insttech.washington.edu/~_450bteam13/setWarframe.php";
 
     public WarframeDetailFragment() {
         // Required empty public constructor
     }
 
-
+    /**
+     * doing what evern needs to be done in when creating the view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,6 +103,10 @@ public class WarframeDetailFragment extends Fragment {
         }
     }
 
+    /**
+     * where we retrieve the warframe that we selected.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +116,8 @@ public class WarframeDetailFragment extends Fragment {
         }
     }
 
+
+    /*
 
     @Override
     public void onStart() {
@@ -120,6 +133,8 @@ public class WarframeDetailFragment extends Fragment {
             updateView((Warframe) args.getSerializable(WARFRAME_SELECTED));
         }
     }
+    */
+
     /*
     @Override
     public void onDetach() {
@@ -146,31 +161,23 @@ public class WarframeDetailFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-/**
+
     private String buildCourseURL(View v) {
 
-        //StringBuilder sb = new StringBuilder(COURSE_ADD_URL);
+        StringBuilder sb = new StringBuilder(ADD_URL);
 
         try {
 
 
-            String courseId = mCourseIdEditText.getText().toString();
-            sb.append("id=");
-            sb.append(courseId);
+            String warframe = mWarframeItem.getMyCharName();
+            sb.append("warframe=");
+            sb.append(warframe);
 
 
-            String courseShortDesc = mCourseShortDescEditText.getText().toString();
-            sb.append("&shortDesc=");
-            sb.append(URLEncoder.encode(courseShortDesc, "UTF-8"));
+            //String courseShortDesc = mCourseShortDescEditText.getText().toString();
+            sb.append("&name=");
+            //sb.append(URLEncoder.encode(courseShortDesc, "UTF-8"));
 
-
-            String courseLongDesc = mCourseLongDescEditText.getText().toString();
-            sb.append("&longDesc=");
-            sb.append(URLEncoder.encode(courseLongDesc, "UTF-8"));
-
-            String coursePrereqs = mCoursePrereqsEditText.getText().toString();
-            sb.append("&prereqs=");
-            sb.append(URLEncoder.encode(coursePrereqs, "UTF-8"));
 
             Log.i("CourseAddFragment", sb.toString());
 
@@ -182,6 +189,6 @@ public class WarframeDetailFragment extends Fragment {
         }
         return sb.toString();
     }
- **/
+
 
 }
