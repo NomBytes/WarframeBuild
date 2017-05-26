@@ -60,9 +60,10 @@ public class MenuActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         if (id == R.id.action_logout) {
             SharedPreferences sharedPreferences =
                     getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);
