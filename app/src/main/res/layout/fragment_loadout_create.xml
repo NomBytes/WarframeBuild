@@ -91,22 +91,6 @@
                 android:text="Aura Mod" />
 
             <TextView
-                android:id="@+id/exilus_mod_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="EXILUS MOD"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <Button
-                android:id="@+id/mod2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Exilus Mod" />
-
-
-            <TextView
                 android:id="@+id/other_mods_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,6 +99,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/mod2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mod 2" />
 
             <Button
                 android:id="@+id/mod3"

@@ -22,6 +22,7 @@ public class WarframeLoadout implements Serializable {
 
     private double[] myUpdatedAtts;  /* The attributes the Warframe has after accounting for mods */
     private int myCapacity;       /* The number of points the loadout has */
+    private int[] myLevels;
 
     /**
      * Creates a new Warframe loadout.
@@ -43,6 +44,7 @@ public class WarframeLoadout implements Serializable {
         myUpdatedAtts = new double[9];
         myCapacity = 30;
         myPolarities = new int[10];
+        myLevels = new int[10];
 
         //initializing UpdatedAtts array.
         myUpdatedAtts[0] = theWarframe.getMyHealth();
@@ -76,14 +78,16 @@ public class WarframeLoadout implements Serializable {
         int result = myCapacity;
         for (int i = 1; i < 10; i++) {
             if (myMods[i] != null) {
-                myCapacity -= myMods[i].calculateCost(myPolarities[i], 0);
+                myCapacity -= myMods[i].calculateCost(myPolarities[i], myLevels[i]);
             }
         }
         return result;
     }
 
     /**
-     * Checks the mod change to make sure that there is enough capacity to make the desired mod change.
+     * Checks the mod change to make sure that there is enough capacity to make the desired mod
+     * change. This is done anytime any level or mod change is seen and is done before any mod
+     * changes are committed.
      * @param theMod the new Mod to put in.
      * @param theLevel the Level of the mod to put in.
      * @param theSlot the slot the new mod would go.
@@ -92,10 +96,24 @@ public class WarframeLoadout implements Serializable {
     public boolean validateModChange(Mod theMod, int theLevel, int theSlot) {
         int testCapacity = this.calculateRemainingCapacity();
         if (myMods[theSlot] != null) {
-            testCapacity += myMods[theSlot].calculateCost(myPolarities[theSlot], 0);
+            testCapacity += myMods[theSlot].calculateCost(myPolarities[theSlot], myLevels[theSlot]);
         }
         testCapacity -= theMod.calculateCost(myPolarities[theSlot], theLevel);
         return testCapacity >= 0;
+    }
+
+    /**
+     * Changes/updates the mod at it's current slot.
+     * @param theMod the new Mod being placed.
+     * @param theLevel the level of the Mod being placed.
+     * @param theSlot The slot the mod ia being placed in.
+     */
+    public void changeMod(Mod theMod, int theLevel, int theSlot) {
+        if (validateModChange(theMod, theLevel, theSlot)) {
+            myMods[theSlot] = theMod;
+            myLevels[theSlot] = theLevel;
+            calculateRemainingCapacity();
+        }
     }
 
 
@@ -105,11 +123,13 @@ public class WarframeLoadout implements Serializable {
      */
     public int updateMaxCapacity() {
         int result = 30;
+        //Checks if the reactor is installed.
         if (myReactor) {
             result = result * 2;
         }
+        //Adds the value from the Aura mod if necessary,
         if (myMods[0] != null) {
-            result = result + myMods[0].calculateCost(myPolarities[0], 0);
+            result = result + myMods[0].calculateCost(myPolarities[0], myLevels[0]);
         }
         myCapacity = result;
         return result;

@@ -51,8 +51,15 @@ public class Mod implements Serializable {
     MAX_LEVEL = "max_level", POLARITY = "polarity", ATT = "attribute",
     EFFECT = "effect", AURA = "aura", RARITY = "rarity";
 
-
-
+    /**
+     * Creates a new mod.
+     * @param myName Name of the mod
+     * @param myRarity Rarity of the mod
+     * @param myType Type of mod
+     * @param myBaseCost The base cost of the mod
+     * @param myMaxLevel The max level of the mod
+     * @param myPolarity The polarity of the mod
+     */
     public Mod(String myName, int myRarity, int myType, int myBaseCost, int myMaxLevel, int myPolarity) {
         this.myName = myName;
         this.myRarity = myRarity;
@@ -62,12 +69,27 @@ public class Mod implements Serializable {
         this.myPolarity = myPolarity;
     }
 
+    /**
+     * Calcuates the cost of the mod, given the polarity and mod level.
+     * Auras "cost" will actually add to the capacity rather than decrease it.
+     * @param theSlotPolarity
+     * @param theModLevel
+     * @return
+     */
     public int calculateCost(int theSlotPolarity, int theModLevel) {
         int result = myBaseCost + theModLevel;
         if (theSlotPolarity == myPolarity) {
-            result = result / 2;
+            if (myType == 0) { //Normal mod
+                result = result / 2;
+            } else {           //Aura mod
+                result = result * 2;
+            }
         } else if (theSlotPolarity != 0) {
-            result = (int)(result * 1.25);
+            if (myType == 0) { //Normal mod
+                result = (int) (result * 1.25);
+            } else {           //Aura mod
+                result = (int) (result * 0.8);
+            }
         }
         return result;
     }
