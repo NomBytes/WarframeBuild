@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.nombi.warframebuild.loadout.Mod;
@@ -33,6 +34,7 @@ public class ModDetailFragment extends Fragment {
     private TextView mModLevel;
     private TextView mModCost;
     private TextView mAttribute;
+    private SeekBar  mLevelScroll;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -84,9 +86,32 @@ public class ModDetailFragment extends Fragment {
         mModLevel = (TextView) v.findViewById(R.id.level_number);
         mModCost = (TextView) v.findViewById(R.id.mod_cost_text);
         mAttribute = (TextView) v.findViewById(R.id.mod_effect_1);
+        mLevelScroll = (SeekBar) v.findViewById(R.id.level_seekbar);
 
         if(mMod != null){
-            //mModName.setText(mMod)
+            mModName.setText(mMod.getMyName());
+            mModCost.setText("Cost = " + Integer.toString(mMod.getMyBaseCost()));
+            mLevelScroll.setMax(mMod.getMyMaxLevel());
+            mLevelScroll.setProgress(mMod.getMyMaxLevel());
+            mLevelScroll.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                    mModLevel.setText(String.valueOf(progress));
+                    mModCost.setText("Cost " + String.valueOf(
+                            mMod.calculateCost(mMod.getMyPolarity(),progress)
+                    ));
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
         }
 
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
