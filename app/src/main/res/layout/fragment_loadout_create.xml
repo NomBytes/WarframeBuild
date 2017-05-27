@@ -74,7 +74,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/aura_mod_text"
                 android:layout_width="match_parent"
@@ -84,6 +85,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/mod1"
                 android:layout_width="match_parent"
@@ -143,10 +145,6 @@
                 android:text="Mod 9" />
 
 
-
-
-
-
             <Button
                 android:id="@+id/mod8"
                 android:layout_width="match_parent"
@@ -164,13 +162,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mod 10" />
-
-
-
-
-
-
-
 
 
         </LinearLayout>

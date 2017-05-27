@@ -25,7 +25,7 @@
             android:id="@+id/polarityImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@android:drawable/ic_delete" />
 
         <Button
             android:id="@+id/change_polarity_button"
@@ -39,7 +39,7 @@
         android:id="@+id/mod_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mod Name"
+        android:text="Empty Slot"
         android:textAlignment="center"
         android:textColor="@color/wfDark"
         android:textSize="24sp"
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.03"
-            android:text="3"
+            android:text="N/A"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp"
@@ -88,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Mod Cost: 7"
+        android:text="Mod Cost: N/A"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
@@ -113,6 +113,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CLEAR MOD" />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm Slot" />
 
     <Button
         android:id="@+id/back_to_loadout_button"

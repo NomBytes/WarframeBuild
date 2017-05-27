@@ -116,6 +116,19 @@ public class WarframeLoadout implements Serializable {
         }
     }
 
+    /**
+     * Clears a mod spot, making it empty.
+     * @param theSlot the mod slot to clear.
+     */
+    public void clearMod(int theSlot) {
+        myMods[theSlot] = null;
+        myLevels[theSlot] = 0;
+        calculateRemainingCapacity();
+
+        if (theSlot == 0) { //Aura mods affect maximum capacity
+            updateMaxCapacity();
+        }
+    }
 
     /**
      * Udpates the max capacity of the Warframe when changes to reactor and aura mods are made.
@@ -135,7 +148,6 @@ public class WarframeLoadout implements Serializable {
         return result;
     }
 
-
     /**
      * Sets the polarity of a selected slot.
      * @param theSlot the slot that is affected by the change
@@ -147,6 +159,7 @@ public class WarframeLoadout implements Serializable {
         }
     }
 
+    //Getters
     public String getMyLoadoutName() {
         return myLoadoutName;
     }
