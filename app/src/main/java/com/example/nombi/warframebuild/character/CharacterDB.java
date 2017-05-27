@@ -25,41 +25,6 @@ public final class CharacterDB {
             {300, 300, 250, 150, 1, 100, 100, 100, 100}, //Excalibur Prime
             {300, 450, 300, 150, 0.95, 100, 100, 100, 100}, //Frost
             {300, 525, 300, 150, 0.95, 100, 100, 100, 100}//Frost Prime
-            //Hydroid
-            //Inaros
-            //Ivara
-            //Limbo
-            //Loki
-            //Loki Prime
-            //Mag
-            //Mag Prime
-            //Mesa
-            //Mirage
-            //Nekros
-            //Nekros Prime
-            //Nezha
-            //Nidus
-            //Nova
-            //Nova Prime
-            //Nyx
-            //Nyx Prime
-            //Oberon
-            //Octavia
-            //Rhino
-            //Rhino Prime
-            //Saryn
-            //Saryn Prime
-            //Titania
-            //Trinity
-            //Trinity Prime
-            //Valkyr
-            //Valkyr Prime
-            //Vauban
-            //Vauban Prime
-            //Volt
-            //Volt Prime
-            //Wukong
-            //Zephyr
     };
 
     public static final Warframe[] Warframes =

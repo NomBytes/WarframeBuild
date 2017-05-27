@@ -7,25 +7,23 @@ import java.io.Serializable;
  * @author Calvin
  * @version 17.05.02
  */
-
 abstract class Character implements Serializable{
 
-    //
-    private double myHealth;
-    private double myShields;
-    private double myArmor;
-    private double myPower;
-    private double mySprintSpeed;
+    private double myHealth;        /* The health valueof the character */
+    private double myShields;       /* The shields value of the character */
+    private double myArmor;         /* The armor value of the character */
+    private double myPower;         /* The power of the character */
+    private double mySprintSpeed;   /* The sprint speed of the character */
 
-    private double myPwrRange;
-    private double myPwrStrength;
-    private double myPwrDuration;
-    private double myPwrEfficency;
+    private double myPwrRange;      /* The Range of the character's abilities */
+    private double myPwrStrength;   /* The Strength of the character's abilities */
+    private double myPwrDuration;   /* The Duration of the character's abilities */
+    private double myPwrEfficency;  /* The Efficiency (cost) of the character's abilities */
 
-    private String myType;
-    private String myBase;
-    private String myCharName;
-    private String myCompanionType;
+    private String myType;          /* The type of character */
+    private String myBase;          /* The base type of the character */
+    private String myCharName;      /* The name of the character */
+    private String myCompanionType; /* The type of companion (ununsed) */
 
     //////////////////////Constructor/////////////////////
 
@@ -46,6 +44,11 @@ abstract class Character implements Serializable{
     }
 
     /////////////Constructor Helper Methods/////////////////
+
+    /**
+     * Initializes the attributes to their respective fields given a attribute array.
+     * @param theAtts the Attribute array that holds the attributes of the character.
+     */
     private void initializeStats(double[] theAtts) {
         myHealth = theAtts[0];
         myShields = theAtts[1];

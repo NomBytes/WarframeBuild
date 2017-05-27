@@ -14,11 +14,9 @@ import java.util.List;
  * @author Calvin
  * @version 17.05.04
  */
-
 public class Mod implements Serializable {
     //Name and Rarity
     private String myName;
-
 
     private int myRarity;
     private int myType;
@@ -94,7 +92,8 @@ public class Mod implements Serializable {
         return result;
     }
 
-
+    //Getters (once created, the mods are not supposed to be editable. The current level of the mod
+    //is stored in the loadout class, but the fields here are never supposed to change)
     public String getMyName() {
         return myName;
     }

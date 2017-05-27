@@ -31,6 +31,7 @@ public class LoadoutCreateFragment extends Fragment {
 
     WarframeLoadout mLoad;
 
+    //buttons
     Button create_button;
 
     private Button mod1Button;

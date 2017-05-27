@@ -26,6 +26,12 @@ public class Warframe extends Character {
             COMPTYPE = "wfCompType", BASE = "wfBase",TYPE = "wfType";
 
 
+    /**
+     * Creates a new warframe.
+     * @param theAtts The attributes of the Warframe.
+     * @param theBase The base warframe (Ash Prime's base is Ash, etc.)
+     * @param theName The full name of the Warframe
+     */
     public Warframe (double[] theAtts, String theBase, String theName) {
         super(theAtts, theBase, theName, "N/A", "Warframe");
     }
