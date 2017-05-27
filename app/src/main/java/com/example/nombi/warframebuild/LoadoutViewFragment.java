@@ -14,7 +14,7 @@ import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link viewInteractionListener} interface
+ * {@link OnViewInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoadoutViewFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -31,7 +31,7 @@ public class LoadoutViewFragment extends Fragment {
     private String mParam2;
 
     WarframeLoadout mLoadout;
-    private viewInteractionListener mListener;
+    private OnViewInteractionListener mListener;
 
     public LoadoutViewFragment() {
         // Required empty public constructor
@@ -73,15 +73,15 @@ public class LoadoutViewFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(mLoadout);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof viewInteractionListener) {
-            mListener = (viewInteractionListener) context;
+        if (context instanceof OnViewInteractionListener) {
+            mListener = (OnViewInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement createLoadoutInteractionListener");
@@ -104,8 +104,8 @@ public class LoadoutViewFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface viewInteractionListener {
+    public interface OnViewInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(WarframeLoadout load);
     }
 }

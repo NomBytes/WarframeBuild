@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.nombi.warframebuild.character.Warframe;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 
@@ -26,10 +27,12 @@ public class LoadoutCreateFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public final static String WARFRAME_SELECTED = "warframe_selected";
 
     public static final String LOADOUT_SELECTED = "selected_load";
 
     WarframeLoadout mLoad;
+    Warframe mWarframe;
 
     //buttons
     Button create_button;
@@ -44,6 +47,7 @@ public class LoadoutCreateFragment extends Fragment {
     private Button mod8Button;
     private Button mod9Button;
     private Button mod10Button;
+
 
 
     Fragment FRAG = new WarframeFragment();
@@ -99,8 +103,7 @@ public class LoadoutCreateFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mWarframe = (Warframe)getArguments().getSerializable(WarframeDetailFragment.WARFRAME_SELECTED);
         }
     }
 
@@ -114,7 +117,9 @@ public class LoadoutCreateFragment extends Fragment {
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
 
+
         create_button = (Button) view.findViewById(R.id.create);
+
 
         mod1Button = (Button) view.findViewById(R.id.mod1);
         mod2Button = (Button) view.findViewById(R.id.mod2);
@@ -138,7 +143,9 @@ public class LoadoutCreateFragment extends Fragment {
         mod9Button.setOnClickListener(onClickListener);
         mod10Button.setOnClickListener(onClickListener);
 
-        //create_button
+       if(mWarframe != null){
+           warframe_b.setText(mWarframe.getMyCharName());
+       }
 
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)

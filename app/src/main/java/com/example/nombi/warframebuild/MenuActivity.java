@@ -41,7 +41,9 @@ public class MenuActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment LoadoutCreateFragment = new LoadoutCreateFragment();
+                LoadoutCreateFragment LoadoutCreateFragment = new LoadoutCreateFragment();
+
+
 
                 LoadoutCreateFragment.setArguments(args);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, LoadoutCreateFragment)
@@ -115,6 +117,8 @@ public class MenuActivity extends AppCompatActivity implements
         args.putSerializable(detailFragment.WARFRAME_SELECTED,warframe);
 
 
+
+
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, detailFragment)
@@ -174,6 +178,8 @@ public class MenuActivity extends AppCompatActivity implements
      */
     @Override
     public void onCreateLoadFragInteraction(WarframeLoadout w) {
+
+
         //WarframeDetailFragment detailFragment = WarframeDetailFragment.WARFRAME_SELECTED(w)
 
     }

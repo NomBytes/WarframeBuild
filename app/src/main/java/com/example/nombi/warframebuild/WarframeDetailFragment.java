@@ -1,21 +1,17 @@
 package com.example.nombi.warframebuild;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nombi.warframebuild.character.Warframe;
-
-import org.w3c.dom.Text;
-
-import java.net.URLEncoder;
 
 
 /**
@@ -37,6 +33,8 @@ public class WarframeDetailFragment extends Fragment {
     private TextView mPwrDuration;
     private TextView mPwrEfficency;
 
+
+    LoadoutCreateFragment CREATE_LOADFRAG = new LoadoutCreateFragment();
     private Warframe mWarframeItem;
    // private createLoadoutInteractionListener mListener;
     private static final String ADD_URL =
@@ -71,6 +69,25 @@ public class WarframeDetailFragment extends Fragment {
         mPwrDuration = (TextView) view.findViewById((R.id.warframe_pwr_duration));
         mPwrEfficency = (TextView) view.findViewById((R.id.warframe_pwr_efficency));
 
+        Button selectWarframe;
+        selectWarframe = (Button) view.findViewById(R.id.select_warframe_button);
+        Bundle args = new Bundle();
+        selectWarframe.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
+                public void onClick(View v){
+                    if(getArguments() != null) {
+                        CREATE_LOADFRAG.setArguments(getArguments());
+                    }
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.fragment_container, CREATE_LOADFRAG)
+                            .commit();
+
+                }
+            }
+        );
+
+
         mName.setText("testing");
         if (mWarframeItem != null) {
             mName.setText(mWarframeItem.getMyCharName());
@@ -84,6 +101,7 @@ public class WarframeDetailFragment extends Fragment {
             mPwrDuration.setText("Power Duration: " + mWarframeItem.getMyPwrDuration());
             mPwrEfficency.setText("Power Efficency: " + mWarframeItem.getMyPwrEfficency());
         }
+
 
         return view;
     }
