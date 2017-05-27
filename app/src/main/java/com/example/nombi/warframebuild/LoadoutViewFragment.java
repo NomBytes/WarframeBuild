@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.nombi.warframebuild.loadout.WarframeLoadout;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoadoutViewFragment.OnFragmentInteractionListener} interface
+ * {@link viewInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoadoutViewFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -28,7 +30,8 @@ public class LoadoutViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    WarframeLoadout mLoadout;
+    private viewInteractionListener mListener;
 
     public LoadoutViewFragment() {
         // Required empty public constructor
@@ -56,8 +59,7 @@ public class LoadoutViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mLoadout = (WarframeLoadout)getArguments().getSerializable(LOAD_SELECtED);
         }
     }
 
@@ -78,8 +80,8 @@ public class LoadoutViewFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof viewInteractionListener) {
+            mListener = (viewInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement createLoadoutInteractionListener");
@@ -102,7 +104,7 @@ public class LoadoutViewFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface viewInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

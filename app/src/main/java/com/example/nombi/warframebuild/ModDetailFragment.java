@@ -42,6 +42,7 @@ public class ModDetailFragment extends Fragment {
     Button backToLoadout;
     private OnFragmentInteractionListener mListener;
     ModFragment modFrag = new ModFragment();
+    private Mod mMod;
 
     public ModDetailFragment() {
         // Required empty public constructor
@@ -69,8 +70,7 @@ public class ModDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mMod = (Mod)getArguments().getSerializable(MOD_SELECTED);
         }
     }
 
@@ -85,9 +85,15 @@ public class ModDetailFragment extends Fragment {
         mModCost = (TextView) v.findViewById(R.id.mod_cost_text);
         mAttribute = (TextView) v.findViewById(R.id.mod_effect_1);
 
+        if(mMod != null){
+            //mModName.setText(mMod)
+        }
+
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
         clearMod = (Button) v.findViewById(R.id.clear_mod_button);
         backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
+
+
 
 
         changeMod.setOnClickListener(new View.OnClickListener(){
@@ -159,4 +165,7 @@ public class ModDetailFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    /**
+     *
+     */
 }

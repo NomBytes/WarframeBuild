@@ -22,7 +22,7 @@ import com.example.nombi.warframebuild.loadout.Mod;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 public class MenuActivity extends AppCompatActivity implements
-        WarframeFragment.OnListFragmentInteractionListener, /*LoadoutCreateFragment.createLoadoutInteractionListener,*/
+        WarframeFragment.OnListFragmentInteractionListener,
         ModFragment.OnListModInteractionListener,
         LoadoutCreateFragment.createLoadoutInteractionListener{
 
@@ -143,7 +143,9 @@ public class MenuActivity extends AppCompatActivity implements
 
     /**
      * callls the detail fragment when mod item is pressed on the list.
-     * @param m
+     * Alows us to view mod details
+     *
+     * @param m mod were viewing.
      */
     @Override
     public void OnListModInteractionListener(Mod m) {
@@ -151,7 +153,7 @@ public class MenuActivity extends AppCompatActivity implements
                 = ModDetailFragment.getModDetailFragment(m);
 
 
-        //args.putSerializable(detailFragment.MOD_SELECTED,m);
+        args.putSerializable(detailFragment.MOD_SELECTED,m);
 
 
 
@@ -166,6 +168,10 @@ public class MenuActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * for intereacting iwth loadout creator.
+     * @param w
+     */
     @Override
     public void onCreateLoadFragInteraction(WarframeLoadout w) {
         //WarframeDetailFragment detailFragment = WarframeDetailFragment.WARFRAME_SELECTED(w)

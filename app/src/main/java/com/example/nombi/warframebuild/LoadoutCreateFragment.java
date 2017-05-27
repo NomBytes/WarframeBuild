@@ -27,14 +27,22 @@ public class LoadoutCreateFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public static final String MOD_SELECTED = "selected_mod";
+    public static final String LOADOUT_SELECTED = "selected_load";
+
+    WarframeLoadout mLoad;
 
     Button create_button;
 
-    Button mod1Button;
-    Button mod2Button;
-    Button mod3Button;
-    Button mod4Button;
+    private Button mod1Button;
+    private Button mod2Button;
+    private Button mod3Button;
+    private Button mod4Button;
+    private Button mod5Button;
+    private Button mod6Button;
+    private Button mod7Button;
+    private Button mod8Button;
+    private Button mod9Button;
+    private Button mod10Button;
 
 
     Fragment FRAG = new WarframeFragment();
@@ -58,13 +66,7 @@ public class LoadoutCreateFragment extends Fragment {
 
         }
     };
-    private Button mod4button;
-    private Button mod5Button;
-    private Button mod6Button;
-    private Button mod7Button;
-    private Button mod8Button;
-    private Button mod9Button;
-    private Button mod10Button;
+
 
     public LoadoutCreateFragment() {
         // Required empty public constructor
@@ -88,6 +90,10 @@ public class LoadoutCreateFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * where we retrive loadout
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +118,7 @@ public class LoadoutCreateFragment extends Fragment {
         mod1Button = (Button) view.findViewById(R.id.mod1);
         mod2Button = (Button) view.findViewById(R.id.mod2);
         mod3Button = (Button) view.findViewById(R.id.mod3);
-        mod4button = (Button) view.findViewById(R.id.mod4);
+        mod4Button = (Button) view.findViewById(R.id.mod4);
         mod5Button = (Button) view.findViewById(R.id.mod5);
         mod6Button = (Button) view.findViewById(R.id.mod6);
         mod7Button = (Button) view.findViewById(R.id.mod7);
@@ -131,6 +137,8 @@ public class LoadoutCreateFragment extends Fragment {
         mod9Button.setOnClickListener(onClickListener);
         mod10Button.setOnClickListener(onClickListener);
 
+        //create_button
+
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
@@ -141,6 +149,8 @@ public class LoadoutCreateFragment extends Fragment {
 
             }
         });
+
+
 
         warframe_b.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){

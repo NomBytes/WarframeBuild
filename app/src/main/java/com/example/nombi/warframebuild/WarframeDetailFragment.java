@@ -105,6 +105,7 @@ public class WarframeDetailFragment extends Fragment {
 
     /**
      * where we retrieve the warframe that we selected.
+     * this allows us to get to view the information
      * @param savedInstanceState
      */
     @Override
