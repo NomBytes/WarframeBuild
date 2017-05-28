@@ -78,7 +78,7 @@ public class WarframeLoadout implements Serializable {
         int result = myCapacity;
         for (int i = 1; i < 10; i++) {
             if (myMods[i] != null) {
-                myCapacity -= myMods[i].calculateCost(myPolarities[i], myLevels[i]);
+                result -= myMods[i].calculateCost(myPolarities[i], myLevels[i]);
             }
         }
         return result;
@@ -146,6 +146,27 @@ public class WarframeLoadout implements Serializable {
         }
         myCapacity = result;
         return result;
+    }
+
+    /**
+     * Turns off or on the reactor. It affects the capacity of the loadout.
+     * @param theStatus
+     */
+    public void toggleReactor(boolean theStatus) {
+        myReactor = theStatus;
+        updateMaxCapacity();
+    }
+
+    /**
+     * Checks to make sure that the toggle for reactor can be performed without causing errors.
+     * @param theStatus the desired toggle for the reactor status
+     * @return Whether the toggle reactor can be done without causing errors.
+     */
+    public boolean validateReactor(boolean theStatus) {
+        if (theStatus == false && (myCapacity - calculateRemainingCapacity()) < 30) {
+            return false;
+        }
+        return true;
     }
 
     /**
