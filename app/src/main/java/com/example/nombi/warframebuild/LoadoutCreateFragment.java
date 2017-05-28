@@ -75,7 +75,6 @@ public class LoadoutCreateFragment extends Fragment {
         }
     };
 
-
     public LoadoutCreateFragment() {
         // Required empty public constructor
     }
@@ -123,7 +122,6 @@ public class LoadoutCreateFragment extends Fragment {
         reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
 
         create_button = (Button) view.findViewById(R.id.create);
-
 
         mod1Button = (Button) view.findViewById(R.id.mod1);
         mod2Button = (Button) view.findViewById(R.id.mod2);

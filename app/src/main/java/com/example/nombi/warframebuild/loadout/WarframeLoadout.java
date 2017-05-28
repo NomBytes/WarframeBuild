@@ -33,6 +33,13 @@ public class WarframeLoadout implements Serializable {
     }
 
     /**
+     *
+     */
+    public WarframeLoadout() {
+        setupLoadout(null, "New Loadout");
+    }
+
+    /**
      * Helper method to initialize a new Warframe Layout.
      * @param theWarframe The Warframe the loadout is based on.
      */
