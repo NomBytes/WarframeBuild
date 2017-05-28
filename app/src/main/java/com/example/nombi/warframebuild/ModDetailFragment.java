@@ -42,8 +42,10 @@ public class ModDetailFragment extends Fragment {
     Button changeMod;
     Button clearMod;
     Button backToLoadout;
+    Button confirmB;
     private OnFragmentInteractionListener mListener;
     ModFragment modFrag = new ModFragment();
+    LoadoutCreateFragment createFrag = new LoadoutCreateFragment();
     private Mod mMod;
 
     public ModDetailFragment() {
@@ -87,6 +89,7 @@ public class ModDetailFragment extends Fragment {
         mModCost = (TextView) v.findViewById(R.id.mod_cost_text);
         mAttribute = (TextView) v.findViewById(R.id.mod_effect_1);
         mLevelScroll = (SeekBar) v.findViewById(R.id.level_seekbar);
+        confirmB = (Button) v.findViewById(R.id.confirm_button);
 
         if(mMod != null){
             mModName.setText(mMod.getMyName());
@@ -110,6 +113,18 @@ public class ModDetailFragment extends Fragment {
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
 
+                }
+            });
+
+            confirmB.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view){
+
+                    createFrag.setArguments(getArguments());
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.fragment_container, createFrag)
+                            .commit();
                 }
             });
         }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.nombi.warframebuild.character.Warframe;
+import com.example.nombi.warframebuild.loadout.Mod;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 
@@ -28,6 +29,7 @@ public class LoadoutCreateFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public final static String WARFRAME_SELECTED = "warframe_selected";
+    public final static String SELECTED_BUTTON = "button_selected";
 
     public static final String LOADOUT_SELECTED = "selected_load";
 
@@ -48,7 +50,10 @@ public class LoadoutCreateFragment extends Fragment {
     private Button mod9Button;
     private Button mod10Button;
 
+    private Button selectedButton;
+    private Integer buttonId;
 
+    private Mod mMod;
 
     Fragment FRAG = new WarframeFragment();
 
@@ -62,6 +67,9 @@ public class LoadoutCreateFragment extends Fragment {
 
         @Override
         public void onClick(final View v) {
+
+            //selectedButton = (Button)v.findViewById(v.getId());
+            getArguments().putSerializable(SELECTED_BUTTON, v.getId());
             Fragment modFragment = new ModDetailFragment();
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -101,9 +109,12 @@ public class LoadoutCreateFragment extends Fragment {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mWarframe = (Warframe)getArguments().getSerializable(WarframeDetailFragment.WARFRAME_SELECTED);
+            mMod = (Mod)getArguments().getSerializable(ModDetailFragment.MOD_SELECTED);
+            //buttonId = (Integer)getArguments().getSerializable(SELECTED_BUTTON);
         }
     }
 
@@ -143,10 +154,14 @@ public class LoadoutCreateFragment extends Fragment {
         mod9Button.setOnClickListener(onClickListener);
         mod10Button.setOnClickListener(onClickListener);
 
+       // selectedButton = (Button)View.findViewById(buttonId);
+
        if(mWarframe != null){
            warframe_b.setText(mWarframe.getMyCharName());
        }
-
+       if(mMod != null){
+           //selectedButton.setText(mMod.getMyName());
+       }
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
@@ -162,6 +177,7 @@ public class LoadoutCreateFragment extends Fragment {
 
         warframe_b.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
+
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .addToBackStack(null)

@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity implements
         ModFragment.OnListModInteractionListener,
         LoadoutCreateFragment.createLoadoutInteractionListener{
 
-    Bundle args = new Bundle();
+         Bundle args = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
