@@ -5,12 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.nombi.warframebuild.character.Warframe;
 import com.example.nombi.warframebuild.loadout.Mod;
@@ -28,15 +30,17 @@ import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 public class LoadoutCreateFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public final static String WARFRAME_SELECTED = "warframe_selected";
     public final static String SELECTED_BUTTON = "button_selected";
-
     public static final String LOADOUT_SELECTED = "selected_load";
+    private String author;
 
     WarframeLoadout mLoad;
     Warframe mWarframe;
+
 
     Button create_button;
     EditText loadoutText;
@@ -70,10 +74,24 @@ public class LoadoutCreateFragment extends Fragment {
 
         @Override
         public void onClick(final View v) {
+            switch(v.getId())
+            {
+                case R.id.mod1:
+
+
+// handle button A click;
+                    break;
+                case R.id.mod2:
+// handle button B click;
+                    break;
+                default:
+                    throw new RuntimeException("Unknow button ID");
+            }
 
             //selectedButton = (Button)v.findViewById(v.getId());
             getArguments().putSerializable(SELECTED_BUTTON, v.getId());
             Fragment modFragment = new ModDetailFragment();
+            modFragment.setArguments(getArguments());
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack(null)
@@ -113,10 +131,12 @@ public class LoadoutCreateFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mWarframe = (Warframe)getArguments().getSerializable(WarframeDetailFragment.WARFRAME_SELECTED);
             mMod = (Mod)getArguments().getSerializable(ModDetailFragment.MOD_SELECTED);
-            //buttonId = (Integer)getArguments().getSerializable(SELECTED_BUTTON);
+            buttonId = (Integer)getArguments().getSerializable(SELECTED_BUTTON);
+            author = (String)getArguments().getString("email");
         }
     }
 
@@ -129,6 +149,14 @@ public class LoadoutCreateFragment extends Fragment {
 
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
+        TextView Author = (TextView)view.findViewById(R.id.author);
+        /*
+        if(author != null){
+            Author.setText(author);
+
+        }*/
+
+
         loadoutText = (EditText) view.findViewById(R.id.loadout_name);
         reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
 
@@ -156,14 +184,16 @@ public class LoadoutCreateFragment extends Fragment {
         mod9Button.setOnClickListener(onClickListener);
         mod10Button.setOnClickListener(onClickListener);
 
-       // selectedButton = (Button)View.findViewById(buttonId);
 
        if(mWarframe != null){
            warframe_b.setText(mWarframe.getMyCharName());
        }
-       if(mMod != null){
-           //selectedButton.setText(mMod.getMyName());
-       }
+        if(mMod != null && selectedButton != null){
+            selectedButton.setText(mMod.getMyName());
+        }
+        if(buttonId != null){
+            selectedButton = (Button)view.findViewById(buttonId);
+        }
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
@@ -205,6 +235,7 @@ public class LoadoutCreateFragment extends Fragment {
 
         return view;
     }
+
     /*
     @Override
     public void onStart() {
@@ -214,17 +245,22 @@ public class LoadoutCreateFragment extends Fragment {
         // onStart is a good place to do this because the layout has already been
         // applied to the fragment at this point so we can safely call the method
         // below that sets the article text.
+
         Bundle args = getArguments();
         if (args != null) {
             // Set article based on argument passed in
-            updateView((Mod) args.getSerializable(MOD_SELECTED));
+            updateView((Mod) args.getSerializable(ModDetailFragment.MOD_SELECTED));
         }
     }
 
     public void updateView(Mod m) {
+
         if (m != null) {
-            Log.d("udate view editfragment","course not null");
-            mod1Button.setText(m.getMyName());
+            mMod = m;
+            //Log.d("udate view editfragment","course not null");
+            if(selectedButton != null) {
+                selectedButton.setText(m.getMyName());
+            }
 
             //mCourseIdEditText.setText(course.getCourseId());
            // mCourseShortDescEditText .setText(course.getShortDescription());
@@ -237,6 +273,7 @@ public class LoadoutCreateFragment extends Fragment {
 
     }
     */
+
 
 /*
     // TODO: Rename method, update argument and hook method into UI event

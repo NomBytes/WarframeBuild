@@ -8,8 +8,13 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />-->
     <item
-        android:id="@+id/action_logout"
+        android:id="@+id/share"
         android:orderInCategory="100"
+        android:title="share"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="101"
         android:title="@string/action_logout"
         app:showAsAction="ifRoom"/>
 

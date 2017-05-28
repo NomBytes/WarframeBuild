@@ -34,6 +34,7 @@ public class MenuActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_menu);
         MenuInflater inflater = getMenuInflater();
 
+
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         //setSupportActionBar(myToolbar);
 
@@ -78,10 +79,15 @@ public class MenuActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        /*
-        if (id == R.id.action_settings) {
+
+        if(id == R.id.share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
             return true;
-        }*/
+        }
         if (id == R.id.action_logout) {
             SharedPreferences sharedPreferences =
                     getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);

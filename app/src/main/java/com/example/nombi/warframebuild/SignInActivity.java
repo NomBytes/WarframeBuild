@@ -3,6 +3,8 @@ package com.example.nombi.warframebuild;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -91,6 +93,12 @@ public class SignInActivity extends AppCompatActivity {
     public void register(View v){
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
+        /*
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        */
+
         String URL = buildUserURL(v);
         //Log.d("url",URL);
         addUser(URL);
@@ -312,6 +320,7 @@ public class SignInActivity extends AppCompatActivity {
                             .commit();
 
                     Intent i = new Intent(getApplicationContext(),MenuActivity.class);
+                    //i.putExtra("email",email.getText());
                     startActivity(i);
                     finish();
                     Toast.makeText(getApplicationContext(), " successfully login!"
