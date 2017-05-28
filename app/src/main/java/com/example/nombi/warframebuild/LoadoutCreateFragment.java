@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 import com.example.nombi.warframebuild.character.Warframe;
 import com.example.nombi.warframebuild.loadout.Mod;
@@ -36,8 +38,9 @@ public class LoadoutCreateFragment extends Fragment {
     WarframeLoadout mLoad;
     Warframe mWarframe;
 
-    //buttons
     Button create_button;
+    EditText loadoutText;
+    CheckBox reactorCheckBox;
 
     private Button mod1Button;
     private Button mod2Button;
@@ -79,7 +82,6 @@ public class LoadoutCreateFragment extends Fragment {
 
         }
     };
-
 
     public LoadoutCreateFragment() {
         // Required empty public constructor
@@ -127,10 +129,10 @@ public class LoadoutCreateFragment extends Fragment {
 
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
-
+        loadoutText = (EditText) view.findViewById(R.id.loadout_name);
+        reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
 
         create_button = (Button) view.findViewById(R.id.create);
-
 
         mod1Button = (Button) view.findViewById(R.id.mod1);
         mod2Button = (Button) view.findViewById(R.id.mod2);
@@ -173,7 +175,20 @@ public class LoadoutCreateFragment extends Fragment {
             }
         });
 
-
+        reactorCheckBox.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) v).isChecked();
+                if (checked) {
+                    if (mLoad.validateReactor(false)) {
+                        mLoad.toggleReactor(false);
+                    } else {
+                        ((CheckBox) v).setChecked(false);
+                    }
+                } else {
+                    mLoad.toggleReactor(true);
+                }
+            }
+        });
 
         warframe_b.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
