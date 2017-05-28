@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Warframe extends Character {
 
-
+    public static final double[] DEFAULTASH = {450, 300, 65, 150, 1.15, 100, 100, 100, 100};
 
     public static final String CHARA ="wfChar",
             HEALTH = "wfHealth_float", SHEILDS = "wfShields_float", ARMOR ="wfArmor_float",
@@ -34,6 +34,11 @@ public class Warframe extends Character {
      */
     public Warframe (double[] theAtts, String theBase, String theName) {
         super(theAtts, theBase, theName, "N/A", "Warframe");
+    }
+
+    public Warframe() {
+        super(DEFAULTASH, "Ash", "Ash", "N/A", "Warframe");
+        
     }
 
     /**
