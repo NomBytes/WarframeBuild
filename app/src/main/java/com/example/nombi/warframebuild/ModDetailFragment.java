@@ -39,6 +39,7 @@ public class ModDetailFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Button changePolarity;
     Button changeMod;
     Button clearMod;
     Button backToLoadout;
@@ -83,6 +84,8 @@ public class ModDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mod_detail, container, false);
+
+        changePolarity = (Button) v.findViewById(R.id.change_polarity_button);
 
         mModName = (TextView) v.findViewById(R.id.mod_name);
         mModLevel = (TextView) v.findViewById(R.id.level_number);
@@ -134,7 +137,13 @@ public class ModDetailFragment extends Fragment {
         backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
 
 
-
+        changePolarity.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //Open up list of polarities...
+                //Each option represents a different polarity when checked
+                //will change the correct polarity array and the image on the screen. (by swtich?)
+            }
+        });
 
         changeMod.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

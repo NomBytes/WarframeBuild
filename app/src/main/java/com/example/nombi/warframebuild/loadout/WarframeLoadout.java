@@ -11,47 +11,48 @@ import java.io.Serializable;
  */
 public class WarframeLoadout implements Serializable {
 
-    private String myLoadoutName; /* The name of the loadout. */
-    private String myAuthor;      /* The author of the loadout */
+    private String myLoadoutName;    /* The name of the loadout. */
+    private String myAuthor;         /* The author of the loadout */
 
-    private Warframe myWarframe;  /* The Warframe that the loadout is based on. */
-    private Boolean myReactor;    /* Reactor install toggle */
+    private Warframe myWarframe;     /* The Warframe that the loadout is based on. */
+    private Boolean myReactor;       /* Reactor install toggle */
 
-    private Mod[] myMods;         /* The mods that are installed on the loadout */
-    private int[] myPolarities;   /* The polarity slots the loadout has. */
+    private Mod[] myMods;            /* The mods that are installed on the loadout */
+    private int[] myPolarities;      /* The polarity slots the loadout has. */
 
     private double[] myUpdatedAtts;  /* The attributes the Warframe has after accounting for mods */
-    private int myCapacity;       /* The number of points the loadout has */
-    private int[] myLevels;
+    private int myCapacity;          /* The number of points the loadout has */
+    private int[] myLevels;          /* The levels of each of the mods */
 
     /**
      * Creates a new Warframe loadout.
      * @param theWarframe The Warframe the loadout is based on.
      */
-    public WarframeLoadout(Warframe theWarframe, String theName) {
-        setupLoadout(theWarframe, theName);
+    public WarframeLoadout(Warframe theWarframe, String theName, String theAuthor) {
+        setupLoadout(theWarframe, theName, theAuthor);
     }
 
     /**
-     *
+     * Creates a new loadout with a null warframe and a default name.
      */
-    public WarframeLoadout() {
-        setupLoadout(null, "New Loadout");
+    public WarframeLoadout(String theAuthor) {
+        setupLoadout(null, "New Loadout", theAuthor);
     }
 
     /**
      * Helper method to initialize a new Warframe Layout.
      * @param theWarframe The Warframe the loadout is based on.
      */
-    private void setupLoadout(Warframe theWarframe, String theName) {
+    private void setupLoadout(Warframe theWarframe, String theName, String theAuthor) {
         myLoadoutName = theName;
         myWarframe = theWarframe;
+        myAuthor = theAuthor;
         myReactor = false;
-        myMods = new Mod[10];
+        myMods = new Mod[2];
         myUpdatedAtts = new double[9];
         myCapacity = 30;
-        myPolarities = new int[10];
-        myLevels = new int[10];
+        myPolarities = new int[2];
+        myLevels = new int[2];
 
         //initializing UpdatedAtts array.
         myUpdatedAtts[0] = theWarframe.getMyHealth();
@@ -67,14 +68,6 @@ public class WarframeLoadout implements Serializable {
         //initializing Polarities array.
         myPolarities[0] = 0;
         myPolarities[1] = 0;
-        myPolarities[2] = 0;
-        myPolarities[3] = 0;
-        myPolarities[4] = 0;
-        myPolarities[5] = 0;
-        myPolarities[6] = 0;
-        myPolarities[7] = 0;
-        myPolarities[8] = 0;
-        myPolarities[9] = 0;
     }
 
     /**
@@ -83,7 +76,7 @@ public class WarframeLoadout implements Serializable {
      */
     public int calculateRemainingCapacity() {
         int result = myCapacity;
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 2; i++) {
             if (myMods[i] != null) {
                 result -= myMods[i].calculateCost(myPolarities[i], myLevels[i]);
             }
@@ -106,7 +99,7 @@ public class WarframeLoadout implements Serializable {
             testCapacity += myMods[theSlot].calculateCost(myPolarities[theSlot], myLevels[theSlot]);
         }
         testCapacity -= theMod.calculateCost(myPolarities[theSlot], theLevel);
-        return testCapacity >= 0;
+        return (testCapacity >= 0) && (theSlot >= 0 && theSlot < 2);
     }
 
     /**
@@ -220,4 +213,15 @@ public class WarframeLoadout implements Serializable {
         return myCapacity;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Loadout name: " + myLoadoutName + "\n");
+        sb.append("Author: " + myAuthor + "\n");
+        sb.append("Warframe Name: " + myWarframe.getMyCharName() + "\n");
+        sb.append("Orokin Reactor Enabled?: " + myReactor + "\n");
+        sb.append("First mod: " + myMods[0].getMyName() + ", Level: " + myLevels[0] + "\n");
+        sb.append("Second mod: " + myMods[1].getMyName() + ", Level: " + myLevels[1] + "\n");
+        return sb.toString();
+    }
 }

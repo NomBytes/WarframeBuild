@@ -38,7 +38,7 @@ public class LoadoutCreateFragment extends Fragment {
     public static final String LOADOUT_SELECTED = "selected_load";
     private String author;
 
-    WarframeLoadout mLoad;
+    WarframeLoadout mLoad = new WarframeLoadout("insert author here");
     Warframe mWarframe;
 
 

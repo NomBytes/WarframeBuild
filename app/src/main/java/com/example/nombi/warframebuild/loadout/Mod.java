@@ -27,6 +27,9 @@ public class Mod implements Serializable {
 
     private int myPolarity;
 
+    //private int theAttribute;
+    //private double theEffect;
+
     //Rarity
     private static int RARITY_COMMON    = 0;
     private static int RARITY_UNCOMMON  = 1;
