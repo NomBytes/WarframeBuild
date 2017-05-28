@@ -36,9 +36,12 @@ public class Warframe extends Character {
         super(theAtts, theBase, theName, "N/A", "Warframe");
     }
 
+    /**
+     * Default Warframe that loads in the new Loadout to prevent a null object from being used.
+     */
     public Warframe() {
         super(DEFAULTASH, "Ash", "Ash", "N/A", "Warframe");
-        
+
     }
 
     /**

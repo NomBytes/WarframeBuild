@@ -36,7 +36,7 @@ public class WarframeLoadout implements Serializable {
      * Creates a new loadout with a null warframe and a default name.
      */
     public WarframeLoadout(String theAuthor) {
-        setupLoadout(null, "New Loadout", theAuthor);
+        setupLoadout(new Warframe(), "New Loadout", theAuthor);
     }
 
     /**
@@ -220,8 +220,12 @@ public class WarframeLoadout implements Serializable {
         sb.append("Author: " + myAuthor + "\n");
         sb.append("Warframe Name: " + myWarframe.getMyCharName() + "\n");
         sb.append("Orokin Reactor Enabled?: " + myReactor + "\n");
-        sb.append("First mod: " + myMods[0].getMyName() + ", Level: " + myLevels[0] + "\n");
-        sb.append("Second mod: " + myMods[1].getMyName() + ", Level: " + myLevels[1] + "\n");
+        if (myMods[0] != null) {
+            sb.append("First mod: " + myMods[0].getMyName() + ", Level: " + myLevels[0] + "\n");
+        }
+        if (myMods[1] != null) {
+            sb.append("Second mod: " + myMods[1].getMyName() + ", Level: " + myLevels[1] + "\n");
+        }
         return sb.toString();
     }
 }
