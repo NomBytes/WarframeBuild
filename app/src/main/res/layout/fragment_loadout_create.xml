@@ -90,7 +90,7 @@
                 android:id="@+id/mod1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aura Mod" />
+                android:text="Empty Slot" />
 
             <TextView
                 android:id="@+id/other_mods_text"
@@ -106,62 +106,14 @@
                 android:id="@+id/mod2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mod 2" />
+                android:text="Empty slot" />
 
-            <Button
-                android:id="@+id/mod3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 3" />
-
-            <Button
-                android:id="@+id/mod4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 4" />
-
-            <Button
-                android:id="@+id/mod5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 5" />
-
-            <Button
-                android:id="@+id/mod6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 6" />
-
-            <Button
-                android:id="@+id/mod7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 7" />
-
-            <Button
-                android:id="@+id/mod9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 9" />
-
-
-            <Button
-                android:id="@+id/mod8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 8" />
 
             <Button
                 android:id="@+id/view_stats_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="VIEW STATS" />
-
-            <Button
-                android:id="@+id/mod10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mod 10" />
 
 
         </LinearLayout>
