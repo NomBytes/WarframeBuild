@@ -161,9 +161,14 @@ public class LoadoutCreateFragment extends Fragment {
         if(author != null){
 
             Author.setText(author);
+            if(mLoad == null){
+                mLoad = new WarframeLoadout(author);
+                getArguments().putSerializable(LOADOUT_SELECTED,mLoad);
+            }
+
 
         }
-        mLoad = new WarframeLoadout(author);
+
 
 
 
@@ -275,26 +280,50 @@ public class LoadoutCreateFragment extends Fragment {
 
             }
             //Log.d("buttonId value",buttonId.toString());
-            if(buttonId != null) {
+            if(buttonId != null ) {
                 switch (buttonId) {
                     case R.id.mod1:
-                        w.changeMod(m, level, 1);
-                        mod1Button.setText(mMod.getMyName());
+                        //w.changeMod(m, level, 1);
+                        if(m != null){
+                            mod1Button.setText(m.getMyName());
+                            w.changeMod(m,level,0);
+                        }
+                        Mod[] arr = w.getMyMods();
+                        if(arr[1] != null){
+                            //Toast.makeText()
+                            mod2Button.setText(arr[1].getMyName());
+                       }
+
                         Author.setText(w.getMyAuthor());
                         warframeB.setText(w.getMyWarframe().getMyCharName());
-                        w.changeMod(m,level,0);
+
 
 
                         // handle button A click;
                         break;
                     case R.id.mod2:
-                        mod2 = mMod;
+                       // w.changeMod(m, level, 1);
+                        if(m != null){
+                            mod2Button.setText(m.getMyName());
+                            w.changeMod(m,level,1);
+                        }
 
-                        mod2Button.setText(mMod.getMyName());
+                        Mod[] arr2 = w.getMyMods();
+                        if(arr2[0] != null){
+                            mod1Button.setText(arr2[0].getMyName());
+
+                        }
+
+                        Author.setText(w.getMyAuthor());
+                        warframeB.setText(w.getMyWarframe().getMyCharName());
                         // handle button B click;
                         break;
                     default:
                         throw new RuntimeException("Unknow button ID");
+                }
+                Mod[] arr = w.getMyMods();
+                if(arr[0] != null){
+
                 }
             }
 

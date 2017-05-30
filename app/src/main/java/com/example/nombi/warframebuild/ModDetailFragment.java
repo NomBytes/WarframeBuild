@@ -124,6 +124,7 @@ public class ModDetailFragment extends Fragment {
             mModCost.setText("Cost = " + Integer.toString(mMod.getMyBaseCost()));
             mLevelScroll.setMax(mMod.getMyMaxLevel());
             mLevelScroll.setProgress(0);
+
             mLevelScroll.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -149,6 +150,7 @@ public class ModDetailFragment extends Fragment {
                 }
 
             });
+            getArguments().putInt(LEVEL,mLevel);
 
             confirmB.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
@@ -167,7 +169,7 @@ public class ModDetailFragment extends Fragment {
                 }
             });
 
-            getArguments().putInt(LEVEL,mLevel);
+
         }
 
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
