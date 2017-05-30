@@ -19,7 +19,8 @@
             android:layout_height="match_parent"
             android:text="Current Polarity: "
             android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            />
 
         <ImageView
             android:id="@+id/polarityImage"
@@ -31,7 +32,8 @@
             android:id="@+id/change_polarity_button"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:text="Change" />
+            android:text="Change"
+            android:onClick="launch"/>
 
     </LinearLayout>
 

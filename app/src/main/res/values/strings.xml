@@ -5,9 +5,19 @@
     <string name="LOGIN_PREFS">edu.tacoma.uw.warframebuild.PREFS</string>
     <string name="LOGGEDIN">loggedin</string>
 
+    <string name="pick_polarity">Select Polarity</string>
+    <array name="polarity_array">
+        <item name="none">NONE</item>
+        <item name="madurai">MADURAI</item>
+        <item name="naramon">NARAMON</item>
+        <item name="vazarin">VAZARIN</item>
+        <item name="zenurik">ZENURIK</item>
+    </array>
+    <string name="launch_colors">Launch Colors</string>
+
+    <string name="action_settings">settings</string>
+    <string name="action_logout">Logout</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="action_settings">settings</string>
-    <string name="action_logout">Logout</string>
 </resources>

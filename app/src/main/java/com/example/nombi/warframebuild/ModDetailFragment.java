@@ -1,15 +1,25 @@
 package com.example.nombi.warframebuild;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nombi.warframebuild.loadout.Mod;
 
@@ -30,6 +40,7 @@ public class ModDetailFragment extends Fragment {
 
     public static final String MOD_SELECTED = "selected_mod";
     public static final String LEVEL = "level_selected";
+    public static final String POLARITY = "polarity_selected";
 
 
     private TextView mModName;
@@ -46,7 +57,9 @@ public class ModDetailFragment extends Fragment {
     Button clearMod;
     Button backToLoadout;
     Button confirmB;
+    ImageView polarityImageView;
     int mLevel;
+    int mPolarity;
     private OnFragmentInteractionListener mListener;
     ModFragment modFrag = new ModFragment();
     LoadoutCreateFragment createFrag = new LoadoutCreateFragment();
@@ -74,6 +87,13 @@ public class ModDetailFragment extends Fragment {
         return fragment;
     }
 
+    public void launch(View v) {
+        DialogFragment fragment = null;
+        if (v.getId() == R.id.change_polarity_button) {
+            fragment = new PolarityFragment();
+        } if (fragment != null)
+            fragment.show(getFragmentManager(), "launch");
+    }
 
     /**
      * where we are getting our mods.
@@ -86,6 +106,7 @@ public class ModDetailFragment extends Fragment {
         if (getArguments() != null) {
             mMod = (Mod)getArguments().getSerializable(MOD_SELECTED);
         }
+
     }
 
     @Override
@@ -95,7 +116,7 @@ public class ModDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mod_detail, container, false);
 
-        changePolarity = (Button) v.findViewById(R.id.change_polarity_button);
+        polarityImageView = (ImageView) v.findViewById(R.id.polarityImage);
 
         mModName = (TextView) v.findViewById(R.id.mod_name);
         mModLevel = (TextView) v.findViewById(R.id.level_number);
@@ -118,6 +139,68 @@ public class ModDetailFragment extends Fragment {
                         .addToBackStack(null)
                         .replace(R.id.fragment_container, myFragment)
                         .commit();
+            }
+        });
+
+        changePolarity = (Button) v.findViewById(R.id.change_polarity_button);
+        changePolarity.setOnClickListener(new View.OnClickListener(){
+            public void onClick(final View view){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.pick_polarity)
+                        .setItems(R.array.polarity_array, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // The 'which' argument contains the index position
+                                // of the selected item
+                                Resources res = getActivity().getResources();
+
+                                //change picture to corresponding polarity
+                                //save polarity number.
+                                Bitmap bitmap;
+                                mPolarity = which;
+                                switch (which) {
+                                    case 1:
+                                        bitmap = BitmapFactory.decodeResource(getActivity()
+                                                .getResources(), R.drawable.madurai);
+                                        if (polarityImageView != null) {
+                                            polarityImageView.setImageBitmap(bitmap);
+                                        }
+                                        break;
+                                    case 2:
+                                        bitmap = BitmapFactory.decodeResource(getActivity()
+                                                .getResources(), R.drawable.naramon);
+                                        if (polarityImageView != null) {
+                                            polarityImageView.setImageBitmap(bitmap);
+                                        }
+                                        break;
+                                    case 3:
+                                        bitmap = BitmapFactory.decodeResource(getActivity()
+                                                .getResources(), R.drawable.vazarin);
+                                        if (polarityImageView != null) {
+                                            polarityImageView.setImageBitmap(bitmap);
+                                        }
+                                        break;
+                                    case 4:
+                                        bitmap = BitmapFactory.decodeResource(getActivity()
+                                                .getResources(), R.drawable.zenurik);
+                                        if (polarityImageView != null) {
+                                            polarityImageView.setImageBitmap(bitmap);
+                                        }
+                                        break;
+                                    default:
+                                        Drawable d = getResources().getDrawable(android.R.drawable.ic_delete);
+                                        //int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+                                        if (polarityImageView != null) {
+                                            polarityImageView.setImageDrawable(d);
+                                        }
+                                        break;
+                                }
+
+
+
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
@@ -160,7 +243,6 @@ public class ModDetailFragment extends Fragment {
             confirmB.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
 
-
                     //Set the slot's mod to this one.
                     //getActivity().getSupportFragmentManager().popBackStackImmediate();
 
@@ -190,14 +272,6 @@ public class ModDetailFragment extends Fragment {
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
         clearMod = (Button) v.findViewById(R.id.clear_mod_button);
         backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
-
-        changePolarity.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                //Open up list of polarities...
-                //Each option represents a different polarity when checked
-                //will change the correct polarity array and the image on the screen. (by swtich?)
-            }
-        });
 
         changeMod.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
