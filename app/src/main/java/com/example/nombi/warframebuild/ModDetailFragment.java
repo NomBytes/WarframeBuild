@@ -31,6 +31,7 @@ public class ModDetailFragment extends Fragment {
     public static final String MOD_SELECTED = "selected_mod";
     public static final String LEVEL = "level_selected";
 
+
     private TextView mModName;
     private TextView mModLevel;
     private TextView mModCost;
@@ -168,6 +169,9 @@ public class ModDetailFragment extends Fragment {
                     LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getActivity()
                             .getSupportFragmentManager()
                             .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
+                    if(myFragment == null){
+                        throw new NullPointerException("myfragment is null");
+                    }
 
                     getArguments().putSerializable(LoadoutCreateFragment.MOD_CONFIRMED,mMod);
                     //createFrag.setArguments(getArguments());

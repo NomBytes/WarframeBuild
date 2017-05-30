@@ -38,6 +38,7 @@ public class PersonalLoadoutsFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    public static final String TAG = "PERSONAL_LOADOUTS";
     private personalLoadouts mListener;
     private String mEmail;
     private String URL =

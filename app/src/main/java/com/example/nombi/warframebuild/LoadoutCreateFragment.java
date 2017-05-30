@@ -1,9 +1,7 @@
 package com.example.nombi.warframebuild;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -26,7 +24,7 @@ import java.net.URLEncoder;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link createLoadoutInteractionListener} interface
+ * {@link addLoadout} interface
  * to handle interaction events.
  * Use the {@link LoadoutCreateFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -41,7 +39,11 @@ public class LoadoutCreateFragment extends Fragment {
     public final static String SELECTED_BUTTON = "button_selected";
     public static final String LOADOUT_SELECTED = "selected_load";
     public static final String MOD_CONFIRMED = "MOD_CONFIRMED";
-    public static final String ADD_URL = "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
+    public static final String CREATE_TAG ="CREATE_SELECTED";
+
+    public static final String ADD_URL =
+            "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
+
     private String author;
 
     WarframeLoadout mLoad;
@@ -73,7 +75,7 @@ public class LoadoutCreateFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private createLoadoutInteractionListener mListener;
+    private addLoadout mListener;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
 
@@ -219,7 +221,7 @@ public class LoadoutCreateFragment extends Fragment {
                 if(mWarframe != null) {
                     String url = buildCreatURL(v);
                     mListener.addLoadout(new WarframeLoadout(mWarframe,
-                            loadoutName.getText().toString(), Author.toString()), url);
+                            loadoutText.getText().toString(), Author.toString()), url);
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(), "Warframe is null",
                     Toast.LENGTH_LONG).show();
@@ -365,7 +367,7 @@ public class LoadoutCreateFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onCreateLoadFragInteraction(uri);
+            mListener.addLoadout(uri);
         }
     }
     */
@@ -417,7 +419,7 @@ public class LoadoutCreateFragment extends Fragment {
             sb.append(email);
 
 
-            String name = loadoutName.getText().toString();
+            String name = loadoutText.getText().toString();
             sb.append("&name=");
             sb.append(URLEncoder.encode(name, "UTF-8"));
 

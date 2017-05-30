@@ -60,7 +60,7 @@ public class MenuActivity extends AppCompatActivity implements
             PersonalLoadoutsFragment fragment = new PersonalLoadoutsFragment();
             fragment.setArguments(args);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, fragment)
+                    .add(R.id.fragment_container, fragment,fragment.TAG)
                     .commit();
         }
 
@@ -76,7 +76,7 @@ public class MenuActivity extends AppCompatActivity implements
 
                 LoadoutCreateFragment.setArguments(args);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, LoadoutCreateFragment,
-                        CREATE_TAG)
+                        LoadoutCreateFragment.CREATE_TAG)
                         .addToBackStack(null)
                         .commit();
             }
@@ -219,11 +219,19 @@ public class MenuActivity extends AppCompatActivity implements
     @Override
     public void addLoadout(WarframeLoadout w,String url) {
         AddLoadoutTask task = new AddLoadoutTask();
+        PersonalLoadoutsFragment fragment = (PersonalLoadoutsFragment)getSupportFragmentManager()
+                .findFragmentByTag(PersonalLoadoutsFragment.TAG);
 
-        task.execute(new String[]{url.toString()});
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        getSupportFragmentManager().popBackStackImmediate();
         fab.show();
+
+        fragment.setArguments(args);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+        task.execute(new String[]{url.toString()});
+
 
         //WarframeDetailFragment detailFragment = WarframeDetailFragment.WARFRAME_SELECTED(w)
 
