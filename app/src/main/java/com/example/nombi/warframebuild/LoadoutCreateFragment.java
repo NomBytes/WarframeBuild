@@ -19,7 +19,6 @@ import com.example.nombi.warframebuild.character.Warframe;
 import com.example.nombi.warframebuild.loadout.Mod;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -36,15 +35,14 @@ public class LoadoutCreateFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     public final static String WARFRAME_SELECTED = "warframe_selected";
     public final static String SELECTED_BUTTON = "button_selected";
+    public static final String CREATE_TAG = "CREATE_LOADOUT";
     public static final String LOADOUT_SELECTED = "selected_load";
-    String CREATE_TAG = "CREATE_LOADOUT";
-
-
+    public static final String MOD_CONFIRMED = "MOD_CONFIRMED";
+    public static final String ADD_URL = "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
     private String author;
 
-    WarframeLoadout mLoad;
+    WarframeLoadout mLoad = new WarframeLoadout("insert author here");
     Warframe mWarframe;
-
 
     Button create_button;
     EditText loadoutText;
@@ -53,15 +51,9 @@ public class LoadoutCreateFragment extends Fragment {
 
     private Button mod1Button;
     private Button mod2Button;
-    private Button warframeB;
-
-    Mod mod1;
-    Mod mod2;
-
 
     private Button selectedButton;
     private Integer buttonId;
-    TextView Author;
 
     private Mod mMod;
 
@@ -77,25 +69,20 @@ public class LoadoutCreateFragment extends Fragment {
 
         @Override
         public void onClick(final View v) {
-            /*
             switch(v.getId())
             {
                 case R.id.mod1:
-
-
-            // handle button A click;
+// handle button A click;
                     break;
                 case R.id.mod2:
-                // handle button B click;
+// handle button B click;
                     break;
                 default:
                     throw new RuntimeException("Unknow button ID");
             }
-            */
 
             //selectedButton = (Button)v.findViewById(v.getId());
-            getArguments().putSerializable(SELECTED_BUTTON, new Integer(v.getId()));
-            //Log.d("v.getId",v.getId());
+            getArguments().putSerializable(SELECTED_BUTTON, v.getId());
             Fragment modFragment = new ModDetailFragment();
             modFragment.setArguments(getArguments());
             getActivity().getSupportFragmentManager()
@@ -140,7 +127,6 @@ public class LoadoutCreateFragment extends Fragment {
 
         if (getArguments() != null) {
             mWarframe = (Warframe)getArguments().getSerializable(WarframeDetailFragment.WARFRAME_SELECTED);
-            mLoad = (WarframeLoadout) getArguments().getSerializable(LOADOUT_SELECTED);
             mMod = (Mod)getArguments().getSerializable(ModDetailFragment.MOD_SELECTED);
             buttonId = (Integer)getArguments().getSerializable(SELECTED_BUTTON);
             author = (String)getArguments().getString("email");
@@ -153,28 +139,17 @@ public class LoadoutCreateFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_loadout_create, container, false);
 
-
-
-        warframeB = (Button) view.findViewById(R.id.warframe_button);
-        Author = (TextView)view.findViewById(R.id.author);
-
+        Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
+        TextView Author = (TextView)view.findViewById(R.id.author);
+        /*
         if(author != null){
-
             Author.setText(author);
-            if(mLoad == null){
-                mLoad = new WarframeLoadout(author);
-                getArguments().putSerializable(LOADOUT_SELECTED,mLoad);
-            }
 
-
-        }
-
-
-
+        }*/
 
         loadoutText = (EditText) view.findViewById(R.id.loadout_name);
         reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
-        reactorCheckBox.setChecked(false);
+        reactorCheckBox.setChecked(mLoad.getMyReactor());
         capacityText = (TextView) view.findViewById(R.id.capacity_text);
         capacityText.setText("Capacity: " + mLoad.calculateRemainingCapacity() + "/" + mLoad.getMyCapacity());
 
@@ -187,18 +162,14 @@ public class LoadoutCreateFragment extends Fragment {
         mod2Button.setOnClickListener(onClickListener);
 
        if(mWarframe != null){
-           warframeB.setText(mWarframe.getMyCharName());
+           warframe_b.setText(mWarframe.getMyCharName());
        }
-
-       /*
         if(mMod != null && selectedButton != null){
             selectedButton.setText(mMod.getMyName());
         }
         if(buttonId != null){
             selectedButton = (Button)view.findViewById(buttonId);
         }
-        */
-        getArguments().putSerializable(LOADOUT_SELECTED,mLoad);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
@@ -231,7 +202,7 @@ public class LoadoutCreateFragment extends Fragment {
             }
         });
 
-        warframeB.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
+        warframe_b.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
 
                     getActivity().getSupportFragmentManager()
@@ -247,7 +218,7 @@ public class LoadoutCreateFragment extends Fragment {
         return view;
     }
 
-
+    /*
     @Override
     public void onStart() {
         super.onStart();
@@ -260,78 +231,18 @@ public class LoadoutCreateFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null) {
             // Set article based on argument passed in
-
-            author = (String)args.getString("email");
-            buttonId = (Integer)args.getSerializable(SELECTED_BUTTON);
-
-            updateView((WarframeLoadout) args.getSerializable(LOADOUT_SELECTED),
-                    (Mod)args.getSerializable(ModDetailFragment.MOD_SELECTED),
-            args.getInt(ModDetailFragment.LEVEL));
-
+            updateView((Mod) args.getSerializable(ModDetailFragment.MOD_SELECTED));
         }
     }
 
-    public void updateView(WarframeLoadout w,Mod m,int level) {
+    public void updateView(Mod m) {
 
-        if (w != null) {
-            //mMod = m;
-            if(buttonId == null){
-                Log.d("buttonId","button is null");
-
+        if (m != null) {
+            mMod = m;
+            //Log.d("udate view editfragment","course not null");
+            if(selectedButton != null) {
+                selectedButton.setText(m.getMyName());
             }
-            //Log.d("buttonId value",buttonId.toString());
-            if(buttonId != null ) {
-                switch (buttonId) {
-                    case R.id.mod1:
-                        //w.changeMod(m, level, 1);
-                        if(m != null){
-                            mod1Button.setText(m.getMyName());
-                            w.changeMod(m,level,0);
-                        }
-                        Mod[] arr = w.getMyMods();
-                        if(arr[1] != null){
-                            //Toast.makeText()
-                            mod2Button.setText(arr[1].getMyName());
-                       }
-
-                        Author.setText(w.getMyAuthor());
-                        warframeB.setText(w.getMyWarframe().getMyCharName());
-
-
-
-                        // handle button A click;
-                        break;
-                    case R.id.mod2:
-                       // w.changeMod(m, level, 1);
-                        if(m != null){
-                            mod2Button.setText(m.getMyName());
-                            w.changeMod(m,level,1);
-                        }
-
-                        Mod[] arr2 = w.getMyMods();
-                        if(arr2[0] != null){
-                            mod1Button.setText(arr2[0].getMyName());
-
-                        }
-
-                        Author.setText(w.getMyAuthor());
-                        warframeB.setText(w.getMyWarframe().getMyCharName());
-                        // handle button B click;
-                        break;
-                    default:
-                        throw new RuntimeException("Unknow button ID");
-                }
-                Mod[] arr = w.getMyMods();
-                if(arr[0] != null){
-
-                }
-            }
-
-
-            //mod1Button.setText(m.getMyName());
-
-            Author.setText(author);
-
 
             //mCourseIdEditText.setText(course.getCourseId());
            // mCourseShortDescEditText .setText(course.getShortDescription());
@@ -343,7 +254,7 @@ public class LoadoutCreateFragment extends Fragment {
         //bun.putString("id",mCourseIdTextView.toString());
 
     }
-
+    */
 
 
 /*
