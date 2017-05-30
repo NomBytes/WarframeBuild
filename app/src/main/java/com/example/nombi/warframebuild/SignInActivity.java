@@ -37,6 +37,9 @@ public class SignInActivity extends AppCompatActivity {
     EditText password;
     boolean loginSucess;
     private SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor mEditor;
+
+    private Intent mIntent;
 
     private static String URL;
 
@@ -50,12 +53,14 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         login = (Button)findViewById(R.id.login);
         register = (Button)findViewById(R.id.register);
+        mIntent = new Intent(getApplicationContext(),MenuActivity.class);
         mSharedPreferences = getSharedPreferences(getString(R.string.LOGIN_PREFS)
                 , Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
         if(mSharedPreferences.getBoolean(getString(R.string.LOGGEDIN),true)){
 
             Intent i = new Intent(getApplicationContext(),MenuActivity.class);
-            startActivity(i);
+            startActivity(mIntent);
             finish();
 
         }
@@ -93,6 +98,13 @@ public class SignInActivity extends AppCompatActivity {
     public void register(View v){
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
+        if(!(email.toString().isEmpty()) &&
+                !(password.toString().isEmpty())){
+
+                mEditor.putString("email",email.getText().toString());
+                mEditor.commit();
+                mIntent.putExtra("email",email.getText().toString());
+        }
         /*
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -117,6 +129,14 @@ public class SignInActivity extends AppCompatActivity {
         String URL = buildUserURL(view);
         DialogFragment fragment = null;
         loginUser(URL);
+        if(!(email.toString().isEmpty()) &&
+                !(password.toString().isEmpty())){
+
+            mEditor.putString("email",email.getText().toString());
+            mEditor.commit();
+            mIntent.putExtra("email",email.getText().toString());
+        }
+
 
        /* if(!validate(email.toString())){
             fragment = new UserDialogFragment();
@@ -291,6 +311,7 @@ public class SignInActivity extends AppCompatActivity {
          * It checks to see if there was a problem with the URL(Network) which is when an
          * exception is caught. It tries to call the parse Method and checks to see if it was successful.
          * If not, it displays the exception.
+         * alsoe checks on the login.
          *
          * @param result
          */
@@ -321,7 +342,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     Intent i = new Intent(getApplicationContext(),MenuActivity.class);
                     //i.putExtra("email",email.getText());
-                    startActivity(i);
+                    startActivity(mIntent);
                     finish();
                     Toast.makeText(getApplicationContext(), " successfully login!"
                             , Toast.LENGTH_LONG)

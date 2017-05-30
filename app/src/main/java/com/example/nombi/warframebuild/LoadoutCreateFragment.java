@@ -36,6 +36,8 @@ public class LoadoutCreateFragment extends Fragment {
     public final static String WARFRAME_SELECTED = "warframe_selected";
     public final static String SELECTED_BUTTON = "button_selected";
     public static final String LOADOUT_SELECTED = "selected_load";
+
+
     private String author;
 
     WarframeLoadout mLoad = new WarframeLoadout("insert author here");
@@ -74,19 +76,21 @@ public class LoadoutCreateFragment extends Fragment {
 
         @Override
         public void onClick(final View v) {
+            /*
             switch(v.getId())
             {
                 case R.id.mod1:
 
 
-// handle button A click;
+            // handle button A click;
                     break;
                 case R.id.mod2:
-// handle button B click;
+                // handle button B click;
                     break;
                 default:
                     throw new RuntimeException("Unknow button ID");
             }
+            */
 
             //selectedButton = (Button)v.findViewById(v.getId());
             getArguments().putSerializable(SELECTED_BUTTON, v.getId());
@@ -150,11 +154,11 @@ public class LoadoutCreateFragment extends Fragment {
 
         Button warframe_b = (Button) view.findViewById(R.id.warframe_button);
         TextView Author = (TextView)view.findViewById(R.id.author);
-        /*
+
         if(author != null){
             Author.setText(author);
 
-        }*/
+        }
 
 
         loadoutText = (EditText) view.findViewById(R.id.loadout_name);
