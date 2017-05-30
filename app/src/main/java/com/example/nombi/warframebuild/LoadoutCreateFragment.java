@@ -3,6 +3,7 @@ package com.example.nombi.warframebuild;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -162,11 +163,8 @@ public class LoadoutCreateFragment extends Fragment {
         mod1Button = (Button) view.findViewById(R.id.mod1);
         mod2Button = (Button) view.findViewById(R.id.mod2);
 
-
         mod1Button.setOnClickListener(onClickListener);
         mod2Button.setOnClickListener(onClickListener);
-
-
 
        if(mWarframe != null){
            warframe_b.setText(mWarframe.getMyCharName());
@@ -192,13 +190,19 @@ public class LoadoutCreateFragment extends Fragment {
             public void onClick(View v) {
                 boolean checked = ((CheckBox) v).isChecked();
                 if (checked) {
-                    if (mLoad.validateReactor(false)) {
+                    mLoad.toggleReactor(true);
+                    ((CheckBox) v).setChecked(true);
+                    capacityText.setText("Capacity: " + mLoad.calculateRemainingCapacity() +
+                            "/" + mLoad.getMyCapacity());
+                } else {
+                    if (mLoad.validateReactor(true)) {
                         mLoad.toggleReactor(false);
+                        ((CheckBox) v).setChecked(false);
+                        capacityText.setText("Capacity: " + mLoad.calculateRemainingCapacity() +
+                                "/" + mLoad.getMyCapacity());
                     } else {
                         ((CheckBox) v).setChecked(false);
                     }
-                } else {
-                    mLoad.toggleReactor(true);
                 }
             }
         });

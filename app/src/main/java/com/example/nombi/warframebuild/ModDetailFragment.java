@@ -93,12 +93,26 @@ public class ModDetailFragment extends Fragment {
         mAttribute = (TextView) v.findViewById(R.id.mod_effect_1);
         mLevelScroll = (SeekBar) v.findViewById(R.id.level_seekbar);
         confirmB = (Button) v.findViewById(R.id.confirm_button);
+        backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
+
+        backToLoadout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+
+                //Don't make any changes and go back.
+                createFrag.setArguments(getArguments());
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.fragment_container, createFrag)
+                        .commit();
+            }
+        });
 
         if(mMod != null){
             mModName.setText(mMod.getMyName());
             mModCost.setText("Cost = " + Integer.toString(mMod.getMyBaseCost()));
             mLevelScroll.setMax(mMod.getMyMaxLevel());
-            mLevelScroll.setProgress(mMod.getMyMaxLevel());
+            mLevelScroll.setProgress(0);
             mLevelScroll.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -155,8 +169,6 @@ public class ModDetailFragment extends Fragment {
             }
         });
         return v;
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
