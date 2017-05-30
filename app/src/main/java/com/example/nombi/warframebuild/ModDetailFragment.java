@@ -122,6 +122,7 @@ public class ModDetailFragment extends Fragment {
             confirmB.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
 
+                    //Set the slot's mod to this one.
                     createFrag.setArguments(getArguments());
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
@@ -135,7 +136,6 @@ public class ModDetailFragment extends Fragment {
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
         clearMod = (Button) v.findViewById(R.id.clear_mod_button);
         backToLoadout = (Button) v.findViewById(R.id.back_to_loadout_button);
-
 
         changePolarity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

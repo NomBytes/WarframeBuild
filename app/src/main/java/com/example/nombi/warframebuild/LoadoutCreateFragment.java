@@ -44,18 +44,12 @@ public class LoadoutCreateFragment extends Fragment {
 
     Button create_button;
     EditText loadoutText;
+    TextView capacityText;
     CheckBox reactorCheckBox;
 
     private Button mod1Button;
     private Button mod2Button;
-    private Button mod3Button;
-    private Button mod4Button;
-    private Button mod5Button;
-    private Button mod6Button;
-    private Button mod7Button;
-    private Button mod8Button;
-    private Button mod9Button;
-    private Button mod10Button;
+
 
     private Button selectedButton;
     private Integer buttonId;
@@ -159,30 +153,19 @@ public class LoadoutCreateFragment extends Fragment {
 
         loadoutText = (EditText) view.findViewById(R.id.loadout_name);
         reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
+        reactorCheckBox.setChecked(false);
+        capacityText = (TextView) view.findViewById(R.id.capacity_text);
+        capacityText.setText("Capacity: " + mLoad.calculateRemainingCapacity() + "/" + mLoad.getMyCapacity());
 
         create_button = (Button) view.findViewById(R.id.create);
 
         mod1Button = (Button) view.findViewById(R.id.mod1);
         mod2Button = (Button) view.findViewById(R.id.mod2);
-        mod3Button = (Button) view.findViewById(R.id.mod3);
-        mod4Button = (Button) view.findViewById(R.id.mod4);
-        mod5Button = (Button) view.findViewById(R.id.mod5);
-        mod6Button = (Button) view.findViewById(R.id.mod6);
-        mod7Button = (Button) view.findViewById(R.id.mod7);
-        mod8Button = (Button) view.findViewById(R.id.mod8);
-        mod9Button = (Button) view.findViewById(R.id.mod9);
-        mod10Button= (Button) view.findViewById(R.id.mod10);
+
 
         mod1Button.setOnClickListener(onClickListener);
         mod2Button.setOnClickListener(onClickListener);
-        mod3Button.setOnClickListener(onClickListener);
-        mod4Button.setOnClickListener(onClickListener);
-        mod5Button.setOnClickListener(onClickListener);
-        mod6Button.setOnClickListener(onClickListener);
-        mod7Button.setOnClickListener(onClickListener);
-        mod8Button.setOnClickListener(onClickListener);
-        mod9Button.setOnClickListener(onClickListener);
-        mod10Button.setOnClickListener(onClickListener);
+
 
 
        if(mWarframe != null){

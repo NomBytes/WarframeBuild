@@ -30,7 +30,7 @@ public class LoadoutViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    WarframeLoadout mLoadout;
+    WarframeLoadout mLoadout = new WarframeLoadout("author");
     private OnViewInteractionListener mListener;
 
     public LoadoutViewFragment() {
