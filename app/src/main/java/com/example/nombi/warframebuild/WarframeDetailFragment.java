@@ -36,6 +36,7 @@ public class WarframeDetailFragment extends Fragment {
 
     LoadoutCreateFragment CREATE_LOADFRAG = new LoadoutCreateFragment();
     private Warframe mWarframeItem;
+    Bundle args = getArguments();
    // private createLoadoutInteractionListener mListener;
     private static final String ADD_URL =
             "http://cssgate.insttech.washington.edu/~_450bteam13/setWarframe.php";
@@ -74,6 +75,7 @@ public class WarframeDetailFragment extends Fragment {
         Bundle args = new Bundle();
         selectWarframe.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
+
                     if(getArguments() != null) {
                         CREATE_LOADFRAG.setArguments(getArguments());
                     }
@@ -175,9 +177,9 @@ public class WarframeDetailFragment extends Fragment {
             Warframe warframe) {
         WarframeDetailFragment fragment = new WarframeDetailFragment();
         //fragment.updateView(warframe);
-        Bundle args = new Bundle();
-        args.putSerializable(WARFRAME_SELECTED, warframe);
-        fragment.setArguments(args);
+        //Bundle args = new Bundle();
+        //args.putSerializable(WARFRAME_SELECTED, warframe);
+       // fragment.setArguments(args);
         return fragment;
     }
 

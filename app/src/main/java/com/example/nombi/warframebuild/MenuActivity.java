@@ -25,6 +25,7 @@ public class MenuActivity extends AppCompatActivity implements
         WarframeFragment.OnListFragmentInteractionListener,
         ModFragment.OnListModInteractionListener,
         LoadoutCreateFragment.createLoadoutInteractionListener{
+        String CREATE_TAG = "CREATE_LOADOUT";
 
          Bundle args = new Bundle();
 
@@ -49,13 +50,14 @@ public class MenuActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 LoadoutCreateFragment LoadoutCreateFragment = new LoadoutCreateFragment();
 
 
 
                 LoadoutCreateFragment.setArguments(args);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, LoadoutCreateFragment)
-                        .addToBackStack(null)
+                        .addToBackStack(LoadoutCreateFragment.CREATE_TAG)
                         .commit();
             }
         });
@@ -129,7 +131,7 @@ public class MenuActivity extends AppCompatActivity implements
 
         args.putSerializable(detailFragment.WARFRAME_SELECTED,warframe);
 
-
+        detailFragment.setArguments(args);
 
 
         FragmentTransaction transaction = getSupportFragmentManager()
@@ -173,7 +175,7 @@ public class MenuActivity extends AppCompatActivity implements
         args.putSerializable(detailFragment.MOD_SELECTED,m);
 
 
-
+        detailFragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, detailFragment)

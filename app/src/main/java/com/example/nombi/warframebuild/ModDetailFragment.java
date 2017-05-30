@@ -29,6 +29,7 @@ public class ModDetailFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     public static final String MOD_SELECTED = "selected_mod";
+    public static final String LEVEL = "level_selected";
 
     private TextView mModName;
     private TextView mModLevel;
@@ -44,6 +45,7 @@ public class ModDetailFragment extends Fragment {
     Button clearMod;
     Button backToLoadout;
     Button confirmB;
+    int mLevel;
     private OnFragmentInteractionListener mListener;
     ModFragment modFrag = new ModFragment();
     LoadoutCreateFragment createFrag = new LoadoutCreateFragment();
@@ -71,9 +73,15 @@ public class ModDetailFragment extends Fragment {
         return fragment;
     }
 
+
+    /**
+     * where we are getting our mods.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getArguments().putSerializable(LEVEL,mLevel);
         if (getArguments() != null) {
             mMod = (Mod)getArguments().getSerializable(MOD_SELECTED);
         }
@@ -82,6 +90,7 @@ public class ModDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mod_detail, container, false);
 
@@ -109,6 +118,8 @@ public class ModDetailFragment extends Fragment {
         });
 
         if(mMod != null){
+            mLevel = mMod.getMyBaseCost();
+
             mModName.setText(mMod.getMyName());
             mModCost.setText("Cost = " + Integer.toString(mMod.getMyBaseCost()));
             mLevelScroll.setMax(mMod.getMyMaxLevel());
@@ -120,6 +131,9 @@ public class ModDetailFragment extends Fragment {
                     mModCost.setText("Cost " + String.valueOf(
                             mMod.calculateCost(mMod.getMyPolarity(),progress)
                     ));
+
+                    mLevel = mMod.calculateCost(mMod.getMyPolarity(),progress);
+
                 }
 
                 @Override
@@ -129,14 +143,21 @@ public class ModDetailFragment extends Fragment {
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
+                    mLevel = mMod.calculateCost(mMod.getMyPolarity(),seekBar.getProgress());
+
 
                 }
+
             });
 
             confirmB.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
 
+
                     //Set the slot's mod to this one.
+                    //getActivity().getSupportFragmentManager().popBackStackImmediate();
+                    getActivity().getSupportFragmentManager().popBackStack();
+
                     createFrag.setArguments(getArguments());
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
@@ -145,6 +166,8 @@ public class ModDetailFragment extends Fragment {
                             .commit();
                 }
             });
+
+            getArguments().putInt(LEVEL,mLevel);
         }
 
         changeMod = (Button) v.findViewById(R.id.change_mod_button);
@@ -221,9 +244,9 @@ public class ModDetailFragment extends Fragment {
             Mod m) {
         ModDetailFragment fragment = new ModDetailFragment();
         //fragment.updateView(warframe);
-        Bundle args = new Bundle();
-        args.putSerializable(MOD_SELECTED, m);
-        fragment.setArguments(args);
+        //Bundle args = new Bundle();
+       //args.putSerializable(MOD_SELECTED, m);
+        //fragment.setArguments(args);
         return fragment;
     }
     /**
