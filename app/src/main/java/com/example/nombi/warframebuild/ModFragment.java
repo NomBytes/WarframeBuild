@@ -110,7 +110,7 @@ public class ModFragment extends Fragment {
             mListener = (OnListModInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement personalLoadouts");
         }
     }
 
@@ -198,7 +198,7 @@ public class ModFragment extends Fragment {
 
             // Everything is good, show the list of courses.
             if (!modList.isEmpty()) {
-                Log.d("POSTEXECUTE","list is not empty");
+                //Log.d("POSTEXECUTE","list is not empty");
                 mRecycle.setAdapter(new MyModRecyclerViewAdapter(modList, mListener));
 
 

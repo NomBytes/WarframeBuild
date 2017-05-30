@@ -1,5 +1,6 @@
 package com.example.nombi.warframebuild;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,10 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.nombi.warframebuild.character.CharacterDB;
-import com.example.nombi.warframebuild.character.Warframe;
-//import com.example.nombi.warframebuild.dummy.DummyContent;
-//import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
+import com.example.nombi.warframebuild.dummy.DummyContent;
+import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
+import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -29,36 +29,33 @@ import java.util.List;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link personalLoadouts}
  * interface.
  */
-public class WarframeFragment extends Fragment {
-
-    private static ArrayList<Warframe> warframes = new ArrayList<Warframe>();
+public class PersonalLoadoutsFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-
-    public static final String WAR_SELECTED = "warframe_selected";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
-    private RecyclerView mRecyclerView;
+    private personalLoadouts mListener;
+    private String mEmail;
+    private String URL =
+            "http://cssgate.insttech.washington.edu/~_450bteam13/UserLoadout.php?";
 
-    private static final String Warframe_URL
-            = "http://cssgate.insttech.washington.edu/~_450bteam13/warframes.php?";
+    private RecyclerView mRecyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public WarframeFragment() {
+    public PersonalLoadoutsFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static WarframeFragment newInstance(int columnCount) {
-        WarframeFragment fragment = new WarframeFragment();
+    public static PersonalLoadoutsFragment newInstance(int columnCount) {
+        PersonalLoadoutsFragment fragment = new PersonalLoadoutsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -69,11 +66,8 @@ public class WarframeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        for (Warframe warframe : CharacterDB.Warframes) {
-            warframes.add(warframe);
-        }
-
         if (getArguments() != null) {
+            mEmail = getArguments().getString("email");
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
@@ -81,39 +75,43 @@ public class WarframeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_warframe_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_personalloadouts_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            mRecyclerView = (RecyclerView) view;
-            if (warframes.isEmpty()) {
-                for (Warframe warframe : CharacterDB.Warframes) {
-                    warframes.add(warframe);
-                }
-            }
+            mRecyclerView= (RecyclerView) view;
+            RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-
-            DownloadWarframeTask task = new DownloadWarframeTask();
-            task.execute(new String[]{Warframe_URL});
-
-            //mRecyclerView.setAdapter(new MyWarframeRecyclerViewAdapter(warframes,mListener));
-
-
+            //recyclerView.setAdapter(new MyPersonalLoadoutsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            DownloadLoadouts task = new DownloadLoadouts();
+            String u = buildUrl(view);
+            Log.d("URL",u);
+            task.execute(new String[] {u});
         }
         return view;
     }
 
-
+    public String buildUrl(View v){
+        StringBuilder sb = new StringBuilder(URL);
+        try{
+            sb.append("email=");
+            sb.append(mEmail);
+        }catch(Exception e) {
+            Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+        return sb.toString();
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof personalLoadouts) {
+            mListener = (personalLoadouts) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement personalLoadouts");
@@ -126,7 +124,6 @@ public class WarframeFragment extends Fragment {
         mListener = null;
     }
 
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -137,21 +134,21 @@ public class WarframeFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
+    public interface personalLoadouts {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Warframe warframe);
+        void personalLoadouts(String names);
     }
 
-    private class DownloadWarframeTask extends AsyncTask<String, Void, String> {
-
+    private class DownloadLoadouts extends AsyncTask<String,Void,String>{
 
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
             HttpURLConnection urlConnection = null;
             for (String url : urls) {
+                Log.d("Doanloadloadoutsback",urls.toString());
                 try {
-                    URL urlObject = new URL(url);
+                    java.net.URL urlObject = new URL(url);
                     urlConnection = (HttpURLConnection) urlObject.openConnection();
 
                     InputStream content = urlConnection.getInputStream();
@@ -163,7 +160,7 @@ public class WarframeFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
-                    response = "Unable to download the list of courses, Reason: "
+                    response = "Unable to download the list of ladouts Reason: "
                             + e.getMessage();
                 } finally {
                     if (urlConnection != null)
@@ -175,20 +172,6 @@ public class WarframeFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            // Something wrong with the network or the URL.
-
-
-            // Something wrong with the network or the URL.
-            if (result.startsWith("Unable to")) {
-                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
-                        .show();
-                return;
-            }
-
-
-
-
-
             Log.d("result", result);
             if (result.startsWith("Unable to")) {
                 Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
@@ -196,8 +179,8 @@ public class WarframeFragment extends Fragment {
                 return;
             }
 
-            List<Warframe> courseList = new ArrayList<Warframe>();
-            result = Warframe.parseCourseJSON(result, courseList);
+            List<String> loadoutList = new ArrayList<String>();
+            result = WarframeLoadout.parseCourseJSON(result, loadoutList);
             // Something wrong with the JSON returned.
             if (result != null) {
                 Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
@@ -206,14 +189,13 @@ public class WarframeFragment extends Fragment {
             }
 
             // Everything is good, show the list of courses.
-            if (!courseList.isEmpty()) {
-                //Log.d("POSTEXECUTE","list is not empty");
+            if (!loadoutList.isEmpty()) {
+                Log.d("POSTEXECUTE", "list is not empty");
 
-                mRecyclerView.setAdapter(new MyWarframeRecyclerViewAdapter(courseList, mListener));
+
+                mRecyclerView.setAdapter(new MyPersonalLoadoutsRecyclerViewAdapter(loadoutList, mListener));
             }
+
         }
-
-
     }
 }
-

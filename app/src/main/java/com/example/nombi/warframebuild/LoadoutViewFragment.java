@@ -84,7 +84,7 @@ public class LoadoutViewFragment extends Fragment {
             mListener = (OnViewInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement createLoadoutInteractionListener");
+                    + " must implement addLoadout");
         }
     }
 

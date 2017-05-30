@@ -106,13 +106,16 @@ public class ModDetailFragment extends Fragment {
 
         backToLoadout.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getActivity()
+                        .getSupportFragmentManager()
+                        .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
 
                 //Don't make any changes and go back.
-                createFrag.setArguments(getArguments());
+                //createFrag.setArguments(getArguments());
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)
-                        .replace(R.id.fragment_container, createFrag)
+                        .replace(R.id.fragment_container, myFragment)
                         .commit();
             }
         });
@@ -150,6 +153,7 @@ public class ModDetailFragment extends Fragment {
                 }
 
             });
+
             getArguments().putInt(LEVEL,mLevel);
 
             confirmB.setOnClickListener(new View.OnClickListener(){
@@ -158,14 +162,21 @@ public class ModDetailFragment extends Fragment {
 
                     //Set the slot's mod to this one.
                     //getActivity().getSupportFragmentManager().popBackStackImmediate();
-                    getActivity().getSupportFragmentManager().popBackStack();
 
-                    createFrag.setArguments(getArguments());
+                    //getActivity().getSupportFragmentManager().popBackStack();
+
+                    LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getActivity()
+                            .getSupportFragmentManager()
+                            .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
+
+                    getArguments().putSerializable(LoadoutCreateFragment.MOD_CONFIRMED,mMod);
+                    //createFrag.setArguments(getArguments());
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .addToBackStack(null)
-                            .replace(R.id.fragment_container, createFrag)
+                            .replace(R.id.fragment_container, myFragment)
                             .commit();
+
                 }
             });
 
@@ -206,11 +217,11 @@ public class ModDetailFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof createLoadoutInteractionListener) {
-            mListener = (createLoadoutInteractionListener) context;
+        if (context instanceof addLoadout) {
+            mListener = (addLoadout) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement createLoadoutInteractionListener");
+                    + " must implement addLoadout");
         }
     }
     */

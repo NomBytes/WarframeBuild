@@ -6,23 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.nombi.warframebuild.ModFragment.OnListModInteractionListener;
-//import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
-import com.example.nombi.warframebuild.loadout.Mod;
+import com.example.nombi.warframebuild.PersonalLoadoutsFragment.personalLoadouts;
+import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {link ModItem} and makes a call to the
- * specified {link personalLoadouts}.
+ * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * specified {@link personalLoadouts}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyModRecyclerViewAdapter extends RecyclerView.Adapter<MyModRecyclerViewAdapter.ViewHolder> {
+public class MyPersonalLoadoutsRecyclerViewAdapter extends RecyclerView.Adapter<MyPersonalLoadoutsRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Mod> mValues;
-    private final OnListModInteractionListener mListener;
+    private final List<String> mValues;
+    private final PersonalLoadoutsFragment.personalLoadouts mListener;
 
-    public MyModRecyclerViewAdapter(List<Mod> items, OnListModInteractionListener listener) {
+    public MyPersonalLoadoutsRecyclerViewAdapter(List<String> items, PersonalLoadoutsFragment.personalLoadouts listener) {
         mValues = items;
         mListener = listener;
     }
@@ -30,15 +29,15 @@ public class MyModRecyclerViewAdapter extends RecyclerView.Adapter<MyModRecycler
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_mod, parent, false);
+                .inflate(R.layout.fragment_personalloadouts, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getMyName());
-        holder.mContentView.setText(Integer.toString(mValues.get(position).getMyBaseCost()));//only seems to work if it's a string
+        //holder.mIdView.setText(mValues.get(position).id);
+        holder.mContentView.setText(mValues.get(position));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +45,7 @@ public class MyModRecyclerViewAdapter extends RecyclerView.Adapter<MyModRecycler
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.OnListModInteractionListener(holder.mItem);
+                    mListener.personalLoadouts(holder.mItem);
                 }
             }
         });
@@ -61,7 +60,7 @@ public class MyModRecyclerViewAdapter extends RecyclerView.Adapter<MyModRecycler
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public Mod mItem;
+        public String mItem;
 
         public ViewHolder(View view) {
             super(view);

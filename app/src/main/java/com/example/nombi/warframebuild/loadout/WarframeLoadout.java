@@ -1,8 +1,15 @@
 package com.example.nombi.warframebuild.loadout;
 
+import android.util.Log;
+
 import com.example.nombi.warframebuild.character.Warframe;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * A loadout for a Warframe.
@@ -23,6 +30,8 @@ public class WarframeLoadout implements Serializable {
     private double[] myUpdatedAtts;  /* The attributes the Warframe has after accounting for mods */
     private int myCapacity;          /* The number of points the loadout has */
     private int[] myLevels;          /* The levels of each of the mods */
+
+    public static final String NAME = "loadout_name";
 
     /**
      * Creates a new Warframe loadout.
@@ -227,5 +236,32 @@ public class WarframeLoadout implements Serializable {
             sb.append("Second mod: " + myMods[1].getMyName() + ", Level: " + myLevels[1] + "\n");
         }
         return sb.toString();
+    }
+    public static String parseCourseJSON(String courseJSON, List<String> LoadoutList) {
+        String reason = null;
+
+        Log.d("loadoutJSON", courseJSON);
+        if (courseJSON != null) {
+            try {
+                JSONArray arr = new JSONArray(courseJSON);
+                //int i =0;
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject obj = arr.getJSONObject(i);
+
+                    /*Mod m = new Mod(obj.getString(MOD_NAME),obj.getInt(RARITY),obj.getInt(BASE_COST),obj.getInt(MAX_LEVEL),
+                            obj.getInt(BASE_COST),obj.getInt(POLARITY));*/
+                    String m = obj.getString(NAME);
+
+                    LoadoutList.add(m);
+
+                }
+            } catch (JSONException e) {
+                reason =  "Unable to parse data, Reason: " + e.getMessage();
+                e.printStackTrace();
+
+            }
+
+        }
+        return reason;
     }
 }

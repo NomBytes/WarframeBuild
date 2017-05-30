@@ -37,7 +37,7 @@ public class WarframeDetailFragment extends Fragment {
     LoadoutCreateFragment CREATE_LOADFRAG = new LoadoutCreateFragment();
     private Warframe mWarframeItem;
     Bundle args = getArguments();
-   // private createLoadoutInteractionListener mListener;
+   // private addLoadout mListener;
     private static final String ADD_URL =
             "http://cssgate.insttech.washington.edu/~_450bteam13/setWarframe.php";
 
@@ -164,8 +164,8 @@ public class WarframeDetailFragment extends Fragment {
     }
     */
 
-   /* public interface createLoadoutInteractionListener {
-        void onCreateLoadFragInteraction(Uri uri);
+   /* public interface addLoadout {
+        void addLoadout(Uri uri);
     }*/
     /**
      * Use this factory method to create a new instance of

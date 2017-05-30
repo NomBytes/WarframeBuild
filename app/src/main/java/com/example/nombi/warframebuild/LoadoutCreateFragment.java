@@ -1,9 +1,7 @@
 package com.example.nombi.warframebuild;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,16 +12,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nombi.warframebuild.character.Warframe;
 import com.example.nombi.warframebuild.loadout.Mod;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
+import java.net.URLEncoder;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link createLoadoutInteractionListener} interface
+ * {@link addLoadout} interface
  * to handle interaction events.
  * Use the {@link LoadoutCreateFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -37,7 +38,10 @@ public class LoadoutCreateFragment extends Fragment {
     public final static String WARFRAME_SELECTED = "warframe_selected";
     public final static String SELECTED_BUTTON = "button_selected";
     public static final String LOADOUT_SELECTED = "selected_load";
-    String CREATE_TAG = "CREATE_LOADOUT";
+    public static final String CREATE_TAG = "CREATE_LOADOUT";
+    public static final String MOD_CONFIRMED = "MOD_CONFIRMED";
+    public static final String ADD_URL =
+            "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
 
 
     private String author;
@@ -47,7 +51,7 @@ public class LoadoutCreateFragment extends Fragment {
 
 
     Button create_button;
-    EditText loadoutText;
+    EditText loadoutName;
     TextView capacityText;
     CheckBox reactorCheckBox;
 
@@ -71,7 +75,7 @@ public class LoadoutCreateFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private createLoadoutInteractionListener mListener;
+    private addLoadout mListener;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
 
@@ -147,6 +151,13 @@ public class LoadoutCreateFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -172,7 +183,7 @@ public class LoadoutCreateFragment extends Fragment {
 
 
 
-        loadoutText = (EditText) view.findViewById(R.id.loadout_name);
+        loadoutName = (EditText) view.findViewById(R.id.loadout_name);
         reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
         reactorCheckBox.setChecked(false);
         capacityText = (TextView) view.findViewById(R.id.capacity_text);
@@ -186,9 +197,11 @@ public class LoadoutCreateFragment extends Fragment {
         mod1Button.setOnClickListener(onClickListener);
         mod2Button.setOnClickListener(onClickListener);
 
+        /*
        if(mWarframe != null){
            warframeB.setText(mWarframe.getMyCharName());
        }
+       */
 
        /*
         if(mMod != null && selectedButton != null){
@@ -205,6 +218,15 @@ public class LoadoutCreateFragment extends Fragment {
         floatingActionButton.hide();
         create_button.setOnClickListener( new View.OnClickListener(){
             public void onClick(View v){
+                if(mWarframe != null) {
+                    String url = buildCreatURL(v);
+                    mListener.addLoadout(new WarframeLoadout(mWarframe,
+                            loadoutName.getText().toString(), Author.toString()), url);
+                }else{
+                    Toast.makeText(getActivity().getApplicationContext(), "Warframe is null",
+                    Toast.LENGTH_LONG).show();
+                }
+
 
 
             }
@@ -233,8 +255,9 @@ public class LoadoutCreateFragment extends Fragment {
 
         warframeB.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
-
+                    FRAG.setArguments(getArguments());
                     getActivity().getSupportFragmentManager()
+
                             .beginTransaction()
                             .addToBackStack(null)
                             .replace(R.id.fragment_container, FRAG)
@@ -265,7 +288,7 @@ public class LoadoutCreateFragment extends Fragment {
             buttonId = (Integer)args.getSerializable(SELECTED_BUTTON);
 
             updateView((WarframeLoadout) args.getSerializable(LOADOUT_SELECTED),
-                    (Mod)args.getSerializable(ModDetailFragment.MOD_SELECTED),
+                    (Mod)args.getSerializable(MOD_CONFIRMED),
             args.getInt(ModDetailFragment.LEVEL));
 
         }
@@ -273,7 +296,10 @@ public class LoadoutCreateFragment extends Fragment {
 
     public void updateView(WarframeLoadout w,Mod m,int level) {
 
+        mWarframe = w.getMyWarframe();
+
         if (w != null) {
+            warframeB.setText(w.getMyWarframe().getMyCharName());
             //mMod = m;
             if(buttonId == null){
                 Log.d("buttonId","button is null");
@@ -293,12 +319,6 @@ public class LoadoutCreateFragment extends Fragment {
                             //Toast.makeText()
                             mod2Button.setText(arr[1].getMyName());
                        }
-
-                        Author.setText(w.getMyAuthor());
-                        warframeB.setText(w.getMyWarframe().getMyCharName());
-
-
-
                         // handle button A click;
                         break;
                     case R.id.mod2:
@@ -313,9 +333,6 @@ public class LoadoutCreateFragment extends Fragment {
                             mod1Button.setText(arr2[0].getMyName());
 
                         }
-
-                        Author.setText(w.getMyAuthor());
-                        warframeB.setText(w.getMyWarframe().getMyCharName());
                         // handle button B click;
                         break;
                     default:
@@ -330,7 +347,7 @@ public class LoadoutCreateFragment extends Fragment {
 
             //mod1Button.setText(m.getMyName());
 
-            Author.setText(author);
+
 
 
             //mCourseIdEditText.setText(course.getCourseId());
@@ -350,7 +367,7 @@ public class LoadoutCreateFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onCreateLoadFragInteraction(uri);
+            mListener.addLoadout(uri);
         }
     }
     */
@@ -361,11 +378,11 @@ public class LoadoutCreateFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof createLoadoutInteractionListener) {
-            mListener = (createLoadoutInteractionListener) context;
+        if (context instanceof addLoadout) {
+            mListener = (addLoadout) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement createLoadoutInteractionListener");
+                    + " must implement addLoadout");
         }
     }
 
@@ -386,8 +403,46 @@ public class LoadoutCreateFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface createLoadoutInteractionListener {
+    public interface addLoadout {
         // TODO: Update argument type and name
-        void onCreateLoadFragInteraction(WarframeLoadout w);
+        void addLoadout(WarframeLoadout w, String url);
+    }
+
+    private String buildCreatURL(View v) {
+
+        StringBuilder sb = new StringBuilder(ADD_URL);
+
+        try {
+
+            String email = Author.getText().toString();
+            sb.append("email=");
+            sb.append(email);
+
+
+            String name = loadoutName.getText().toString();
+            sb.append("&name=");
+            sb.append(URLEncoder.encode(name, "UTF-8"));
+
+
+            String warframe = warframeB.getText().toString();
+            sb.append("&warframe=");
+            sb.append(URLEncoder.encode(warframe, "UTF-8"));
+
+            String mod1 = mod1Button.getText().toString();
+            sb.append("&mod1=");
+            sb.append(URLEncoder.encode(mod1, "UTF-8"));
+
+            String mod2 = mod2Button.getText().toString();
+            sb.append("&mod2=");
+            sb.append(URLEncoder.encode(mod2, "UTF-8"));
+
+            Log.i("createloadFragment", sb.toString());
+
+        }
+        catch(Exception e) {
+            Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+        return sb.toString();
     }
 }

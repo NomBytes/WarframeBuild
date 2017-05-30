@@ -3,28 +3,37 @@ package com.example.nombi.warframebuild;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.nombi.warframebuild.character.Warframe;
+import com.example.nombi.warframebuild.dummy.DummyContent;
 import com.example.nombi.warframebuild.loadout.Mod;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MenuActivity extends AppCompatActivity implements
         WarframeFragment.OnListFragmentInteractionListener,
         ModFragment.OnListModInteractionListener,
-        LoadoutCreateFragment.createLoadoutInteractionListener{
+        LoadoutCreateFragment.addLoadout,
+        PersonalLoadoutsFragment.personalLoadouts{
         String CREATE_TAG = "CREATE_LOADOUT";
 
          Bundle args = new Bundle();
@@ -46,6 +55,16 @@ public class MenuActivity extends AppCompatActivity implements
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         //setSupportActionBar(myToolbar);
 
+        if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.list) == null) {
+            Log.d("ONCREATE", "List");
+            PersonalLoadoutsFragment fragment = new PersonalLoadoutsFragment();
+            fragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, fragment)
+                    .commit();
+        }
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +75,9 @@ public class MenuActivity extends AppCompatActivity implements
 
 
                 LoadoutCreateFragment.setArguments(args);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, LoadoutCreateFragment)
-                        .addToBackStack(LoadoutCreateFragment.CREATE_TAG)
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, LoadoutCreateFragment,
+                        CREATE_TAG)
+                        .addToBackStack(null)
                         .commit();
             }
         });
@@ -144,7 +164,7 @@ public class MenuActivity extends AppCompatActivity implements
     }
     /*
     @Override
-    public void onCreateLoadFragInteraction(Uri uri) {
+    public void addLoadout(Uri uri) {
 
     }
     */
@@ -155,6 +175,11 @@ public class MenuActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed(){
         super.onBackPressed();
+        LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getSupportFragmentManager()
+                .findFragmentByTag(CREATE_TAG);
+        if (myFragment != null && myFragment.isVisible()) {
+            // add your code here
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.show();
 
@@ -192,10 +217,103 @@ public class MenuActivity extends AppCompatActivity implements
      * @param w
      */
     @Override
-    public void onCreateLoadFragInteraction(WarframeLoadout w) {
+    public void addLoadout(WarframeLoadout w,String url) {
+        AddLoadoutTask task = new AddLoadoutTask();
 
+        task.execute(new String[]{url.toString()});
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        getSupportFragmentManager().popBackStackImmediate();
+        fab.show();
 
         //WarframeDetailFragment detailFragment = WarframeDetailFragment.WARFRAME_SELECTED(w)
 
+    }
+
+    @Override
+    public void personalLoadouts(String names) {
+        /*ModDetailFragment detailFragment
+                = ModDetailFragment.getModDetailFragment(m);*/
+
+
+        //args.putSerializable(detailFragment.MOD_SELECTED,m);
+
+        /*
+        detailFragment.setArguments(args);
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null);
+
+
+        // Commit the transaction
+        transaction.commit();*/
+
+    }
+
+    private class AddLoadoutTask extends AsyncTask<String,Void,String>{
+        /**
+         * prepares urls
+         * @param urls
+         * @return
+         */
+        @Override
+        protected String doInBackground(String... urls) {
+            Log.d("url", urls.toString());
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            for (String url : urls) {
+                try {
+                    URL urlObject = new URL(url);
+                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+
+                    InputStream content = urlConnection.getInputStream();
+
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    String s = "";
+                    while ((s = buffer.readLine()) != null) {
+                        response += s;
+                    }
+
+                } catch (Exception e) {
+                    response = "Unable to add course, Reason: "
+                            + e.getMessage();
+                } finally {
+                    if (urlConnection != null)
+                        urlConnection.disconnect();
+                }
+            }
+            return response;
+        }
+
+        /**
+         * It checks to see if there was a problem with the URL(Network) which is when an
+         * exception is caught. It tries to call the parse Method and checks to see if it was successful.
+         * If not, it displays the exception.
+         *
+         * @param result
+         */
+        @Override
+        protected void onPostExecute(String result) {
+            // Something wrong with the network or the URL.
+
+
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                String status = (String) jsonObject.get("result");
+                if (status.equals("success")) {
+                    Toast.makeText(getApplicationContext(), "load successfully added!"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed to add: "
+                                    + jsonObject.get("error")
+                            , Toast.LENGTH_LONG)
+                            .show();
+                }
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
+                        e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
