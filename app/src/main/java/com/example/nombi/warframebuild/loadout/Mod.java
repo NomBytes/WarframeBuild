@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * A mod changes stats of a particular object.
  * @author Calvin
- * @version 17.05.04
+ * @version 17.05.30
  */
 public class Mod implements Serializable {
     //Name and Rarity
@@ -71,11 +71,24 @@ public class Mod implements Serializable {
     }
 
     /**
+     * Creates an empty mod (i.e. "no mod") for a loadout to initialize to avoid using null.
+     */
+    public Mod() {
+        myName = "Empty Slot";
+        myRarity = 0;
+        myType = 0;
+        myType = 0;
+        myBaseCost = 0;
+        myMaxLevel = 0;
+        myPolarity = 0;
+    }
+
+    /**
      * Calcuates the cost of the mod, given the polarity and mod level.
      * Auras "cost" will actually add to the capacity rather than decrease it.
-     * @param theSlotPolarity
-     * @param theModLevel
-     * @return
+     * @param theSlotPolarity The polarity of the given slot
+     * @param theModLevel The level of the mod
+     * @return The total cost of the mod given the polarity and level.
      */
     public int calculateCost(int theSlotPolarity, int theModLevel) {
         int result = myBaseCost + theModLevel;

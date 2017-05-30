@@ -1,7 +1,9 @@
 package com.example.nombi.warframebuild;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -24,7 +26,7 @@ import java.net.URLEncoder;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link addLoadout} interface
+ * {@link createLoadoutInteractionListener} interface
  * to handle interaction events.
  * Use the {@link LoadoutCreateFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -38,12 +40,8 @@ public class LoadoutCreateFragment extends Fragment {
     public final static String WARFRAME_SELECTED = "warframe_selected";
     public final static String SELECTED_BUTTON = "button_selected";
     public static final String LOADOUT_SELECTED = "selected_load";
-    public static final String CREATE_TAG = "CREATE_LOADOUT";
     public static final String MOD_CONFIRMED = "MOD_CONFIRMED";
-    public static final String ADD_URL =
-            "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
-
-
+    public static final String ADD_URL = "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
     private String author;
 
     WarframeLoadout mLoad;
@@ -51,7 +49,7 @@ public class LoadoutCreateFragment extends Fragment {
 
 
     Button create_button;
-    EditText loadoutName;
+    EditText loadoutText;
     TextView capacityText;
     CheckBox reactorCheckBox;
 
@@ -75,7 +73,7 @@ public class LoadoutCreateFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private addLoadout mListener;
+    private createLoadoutInteractionListener mListener;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
 
@@ -183,7 +181,7 @@ public class LoadoutCreateFragment extends Fragment {
 
 
 
-        loadoutName = (EditText) view.findViewById(R.id.loadout_name);
+        loadoutText = (EditText) view.findViewById(R.id.loadout_name);
         reactorCheckBox = (CheckBox) view.findViewById(R.id.reactor_checkbox);
         reactorCheckBox.setChecked(false);
         capacityText = (TextView) view.findViewById(R.id.capacity_text);
@@ -255,7 +253,7 @@ public class LoadoutCreateFragment extends Fragment {
 
         warframeB.setOnClickListener( new View.OnClickListener(){//calls warframe fragment list.
                 public void onClick(View v){
-                    FRAG.setArguments(getArguments());
+
                     getActivity().getSupportFragmentManager()
 
                             .beginTransaction()
@@ -347,7 +345,7 @@ public class LoadoutCreateFragment extends Fragment {
 
             //mod1Button.setText(m.getMyName());
 
-
+            Author.setText(author);
 
 
             //mCourseIdEditText.setText(course.getCourseId());
@@ -367,7 +365,7 @@ public class LoadoutCreateFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.addLoadout(uri);
+            mListener.onCreateLoadFragInteraction(uri);
         }
     }
     */

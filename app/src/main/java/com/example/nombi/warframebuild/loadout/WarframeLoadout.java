@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * A loadout for a Warframe.
  * @author Calvin
- * @version 17.05.04
+ * @version 17.05.30
  */
 public class WarframeLoadout implements Serializable {
 
@@ -108,7 +108,8 @@ public class WarframeLoadout implements Serializable {
             testCapacity += myMods[theSlot].calculateCost(myPolarities[theSlot], myLevels[theSlot]);
         }
         testCapacity -= theMod.calculateCost(myPolarities[theSlot], theLevel);
-        return (testCapacity >= 0) && (theSlot >= 0 && theSlot < 2);
+        return (testCapacity >= 0) && (theSlot >= 0 && theSlot < 2) &&
+                (theMod.getMyMaxLevel() >= theLevel) && (theLevel >= 0);
     }
 
     /**
@@ -159,11 +160,13 @@ public class WarframeLoadout implements Serializable {
 
     /**
      * Turns off or on the reactor. It affects the capacity of the loadout.
-     * @param theStatus
+     * @param theStatus the desired reactor status.
      */
     public void toggleReactor(boolean theStatus) {
-        myReactor = theStatus;
-        updateMaxCapacity();
+        if (validateReactor(theStatus)) {
+            myReactor = theStatus;
+            updateMaxCapacity();
+        }
     }
 
     /**
@@ -172,7 +175,7 @@ public class WarframeLoadout implements Serializable {
      * @return Whether the toggle reactor can be done without causing errors.
      */
     public boolean validateReactor(boolean theStatus) {
-        if (theStatus == false && (myCapacity - calculateRemainingCapacity()) < 30) {
+        if (theStatus == false && (calculateRemainingCapacity()) < 30) {
             return false;
         }
         return true;
@@ -185,7 +188,11 @@ public class WarframeLoadout implements Serializable {
      */
     public void setPolarity(int theSlot, int thePolarity) {
         if (thePolarity >= 0 && thePolarity <= 4 && theSlot >= 0 && theSlot <= 9) {
+            int tempPol = myPolarities[theSlot];
             myPolarities[theSlot] = thePolarity;
+            if(calculateRemainingCapacity() < 0) {
+                myPolarities[theSlot] = tempPol;
+            }
         }
     }
 
