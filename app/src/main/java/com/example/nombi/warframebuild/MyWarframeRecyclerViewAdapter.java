@@ -19,10 +19,20 @@ import java.util.List;
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyWarframeRecyclerViewAdapter extends RecyclerView.Adapter<MyWarframeRecyclerViewAdapter.ViewHolder> {
-
+    /**
+     * valyes being pass
+     */
     private final List<Warframe> mValues;
+    /**
+     * allows interaction.
+     */
     private final OnListFragmentInteractionListener mListener;
 
+    /**
+     * creates adaptor for interaction.
+     * @param items
+     * @param listener
+     */
     public MyWarframeRecyclerViewAdapter(List<Warframe> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;

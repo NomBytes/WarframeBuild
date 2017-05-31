@@ -24,22 +24,45 @@ public class user implements Serializable {
         this.password = password;
 
     }
+
+    /**
+     * gets email
+     * @return email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * sets email
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * gets password
+     * @return passwrod
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * sets password
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * gets users and pareses it into a string
+     * @param userJSON
+     * @param userList
+     * @return
+     */
     public static String parseUserJSON(String userJSON, List<user> userList) {
         user u = null;
         String reason = null;

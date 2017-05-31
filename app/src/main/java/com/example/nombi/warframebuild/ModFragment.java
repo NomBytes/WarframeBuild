@@ -13,8 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.nombi.warframebuild.dummy.DummyContent;
-import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
+
 import com.example.nombi.warframebuild.loadout.Mod;
 
 import java.io.BufferedReader;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnListModInteractionListener}
  * interface.
  */
 public class ModFragment extends Fragment {
@@ -55,7 +54,14 @@ public class ModFragment extends Fragment {
     }
 
     /**
-     * allows activity to communicate with list item.
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListModInteractionListener{
 
@@ -73,6 +79,10 @@ public class ModFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * creates default.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +92,13 @@ public class ModFragment extends Fragment {
         }
     }
 
+    /**
+     * creating vixibility.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +119,10 @@ public class ModFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * attaches/
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -114,27 +134,19 @@ public class ModFragment extends Fragment {
         }
     }
 
+    /**
+     * detatches
+     */
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
-    }
 
+    /**
+     * dowlnoading bods.
+     */
     private class DownloadMods extends AsyncTask <String, Void, String> {
 
         @Override
@@ -164,6 +176,11 @@ public class ModFragment extends Fragment {
             }
             return response;
         }
+
+        /**
+         * executes url
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.

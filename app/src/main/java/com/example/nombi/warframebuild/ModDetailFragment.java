@@ -108,6 +108,13 @@ public class ModDetailFragment extends Fragment {
 
     }
 
+    /**
+     * createing view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -281,12 +288,6 @@ public class ModDetailFragment extends Fragment {
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
     /*
     @Override
     public void onAttach(Context context) {
@@ -300,6 +301,9 @@ public class ModDetailFragment extends Fragment {
     }
     */
 
+    /**
+     * detaches.
+     */
     @Override
     public void onDetach() {
         super.onDetach();

@@ -65,6 +65,10 @@ public class WarframeFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * default fragments
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,13 @@ public class WarframeFragment extends Fragment {
         }
     }
 
+    /**
+     * creates view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -108,7 +119,10 @@ public class WarframeFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * attaches to activity
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -120,6 +134,9 @@ public class WarframeFragment extends Fragment {
         }
     }
 
+    /**
+     * detaches form activity.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -142,9 +159,16 @@ public class WarframeFragment extends Fragment {
         void onListFragmentInteraction(Warframe warframe);
     }
 
+    /**
+     * download warfreames
+     */
     private class DownloadWarframeTask extends AsyncTask<String, Void, String> {
 
-
+        /**
+         * exutes url
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -173,6 +197,10 @@ public class WarframeFragment extends Fragment {
             return response;
         }
 
+        /**
+         * checks url and network and dowlload.s
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             // Something wrong with the network or the URL.

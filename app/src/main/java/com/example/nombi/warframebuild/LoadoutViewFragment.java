@@ -63,6 +63,13 @@ public class LoadoutViewFragment extends Fragment {
         }
     }
 
+    /**
+     * creates view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,13 +77,10 @@ public class LoadoutViewFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_loadout_view, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(mLoadout);
-        }
-    }
-
+    /**
+     * allows communicaions between activity and fragment
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -88,6 +92,9 @@ public class LoadoutViewFragment extends Fragment {
         }
     }
 
+    /**
+     * detaches fragment
+     */
     @Override
     public void onDetach() {
         super.onDetach();

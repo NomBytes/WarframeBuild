@@ -20,11 +20,18 @@ import com.example.nombi.warframebuild.R;
  */
 public class PolarityFragment extends DialogFragment {
 
-
+    /**
+     * required constructor.
+     */
     public PolarityFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * gives polarity.
+     * @param savedInstanceState
+     * @return
+     */
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.pick_polarity)

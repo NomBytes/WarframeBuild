@@ -35,7 +35,6 @@ public class LoadoutCreateFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    public final static String WARFRAME_SELECTED = "warframe_selected";
     public final static String SELECTED_BUTTON = "button_selected";
     public static final String LOADOUT_SELECTED = "selected_load";
     public static final String MOD_CONFIRMED = "MOD_CONFIRMED";
@@ -59,15 +58,11 @@ public class LoadoutCreateFragment extends Fragment {
     private Button mod2Button;
     private Button warframeB;
 
-    Mod mod1;
-    Mod mod2;
 
-
-    private Button selectedButton;
     private Integer buttonId;
     TextView Author;
 
-    private Mod mMod;
+
 
     Fragment FRAG = new WarframeFragment();
 
@@ -76,7 +71,9 @@ public class LoadoutCreateFragment extends Fragment {
     private String mParam2;
 
     private addLoadout mListener;
-
+    /**
+     * onlick function for  mod buttons.
+     */
     private View.OnClickListener onClickListener = new View.OnClickListener() {
 
         @Override
@@ -145,14 +142,14 @@ public class LoadoutCreateFragment extends Fragment {
         if (getArguments() != null) {
             mWarframe = (Warframe)getArguments().getSerializable(WarframeDetailFragment.WARFRAME_SELECTED);
             mLoad = (WarframeLoadout) getArguments().getSerializable(LOADOUT_SELECTED);
-            mMod = (Mod)getArguments().getSerializable(ModDetailFragment.MOD_SELECTED);
+
             buttonId = (Integer)getArguments().getSerializable(SELECTED_BUTTON);
             author = (String)getArguments().getString("email");
         }
     }
 
     /**
-     *
+     * creaitng for user to see.
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -270,7 +267,9 @@ public class LoadoutCreateFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * activity comes back.
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -294,6 +293,12 @@ public class LoadoutCreateFragment extends Fragment {
         }
     }
 
+    /**
+     * updatrs
+     * @param w
+     * @param m
+     * @param level
+     */
     public void updateView(WarframeLoadout w,Mod m,int level) {
 
         mWarframe = w.getMyWarframe();

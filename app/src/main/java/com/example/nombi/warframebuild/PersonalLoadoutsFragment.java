@@ -66,6 +66,10 @@ public class PersonalLoadoutsFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * sets up fragment.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +80,13 @@ public class PersonalLoadoutsFragment extends Fragment {
         }
     }
 
+    /**
+     * sets up view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,6 +134,11 @@ public class PersonalLoadoutsFragment extends Fragment {
         return view;
     }
 
+    /**
+     * builds url for retrieving.
+     * @param v
+     * @return
+     */
     public String buildUrl(View v){
         StringBuilder sb = new StringBuilder(URL);
         try{
@@ -134,6 +150,11 @@ public class PersonalLoadoutsFragment extends Fragment {
         }
         return sb.toString();
     }
+
+    /**
+     * attaches to attivity.
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -145,6 +166,9 @@ public class PersonalLoadoutsFragment extends Fragment {
         }
     }
 
+    /**
+     * once its done.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -166,8 +190,15 @@ public class PersonalLoadoutsFragment extends Fragment {
         void personalLoadouts(String names);
     }
 
+    /**
+     * leoads webservice
+     */
     private class DownloadLoadouts extends AsyncTask<String,Void,String>{
-
+        /**
+         * connects to url
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -197,6 +228,10 @@ public class PersonalLoadoutsFragment extends Fragment {
             return response;
         }
 
+        /**
+         * downloads while its excuted.
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             Log.d("result", result);

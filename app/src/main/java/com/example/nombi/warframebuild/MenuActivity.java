@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.nombi.warframebuild.character.Warframe;
-import com.example.nombi.warframebuild.dummy.DummyContent;
 import com.example.nombi.warframebuild.loadout.Mod;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
@@ -29,6 +28,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Main activity.
+ */
 public class MenuActivity extends AppCompatActivity implements
         WarframeFragment.OnListFragmentInteractionListener,
         ModFragment.OnListModInteractionListener,
@@ -175,6 +177,7 @@ public class MenuActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed(){
         super.onBackPressed();
+        /*
         LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getSupportFragmentManager()
                 .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
         PersonalLoadoutsFragment fragment = (PersonalLoadoutsFragment)getSupportFragmentManager()
@@ -190,6 +193,7 @@ public class MenuActivity extends AppCompatActivity implements
             transaction.commit();
 
         }
+        */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.show();

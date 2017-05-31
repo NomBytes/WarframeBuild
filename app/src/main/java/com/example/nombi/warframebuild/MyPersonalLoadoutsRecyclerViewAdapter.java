@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.nombi.warframebuild.PersonalLoadoutsFragment.personalLoadouts;
-import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
+
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link String} and makes a call to the
  * specified {@link personalLoadouts}.
  * TODO: Replace the implementation with code for your data type.
  */
@@ -26,6 +26,12 @@ public class MyPersonalLoadoutsRecyclerViewAdapter extends RecyclerView.Adapter<
         mListener = listener;
     }
 
+    /**
+     * creates view
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -33,6 +39,11 @@ public class MyPersonalLoadoutsRecyclerViewAdapter extends RecyclerView.Adapter<
         return new ViewHolder(view);
     }
 
+    /**
+     * displays interaciton and allows content to show.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -51,17 +62,28 @@ public class MyPersonalLoadoutsRecyclerViewAdapter extends RecyclerView.Adapter<
         });
     }
 
+    /**
+     * gives size
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mValues.size();
     }
 
+    /**
+     * holder for objexts
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
         public String mItem;
 
+        /**
+         * creates view
+         * @param view
+         */
         public ViewHolder(View view) {
             super(view);
             mView = view;
@@ -69,6 +91,10 @@ public class MyPersonalLoadoutsRecyclerViewAdapter extends RecyclerView.Adapter<
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
+        /**
+         * to string.
+         * @return
+         */
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";

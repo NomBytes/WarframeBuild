@@ -31,21 +31,52 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
+    /**
+     * login button
+     */
     Button login;
+    /**
+     * register button.
+     */
     Button register;
+    /**
+     * email button
+     */
     EditText email;
+    /**
+     * paswrod button.
+     */
     EditText password;
+    /**
+     * sucessful login
+     */
     boolean loginSucess;
+    /**
+     * shared preferences
+     */
     private SharedPreferences mSharedPreferences;
+    /**
+     * ysed for writing toshard preferences.
+     */
     SharedPreferences.Editor mEditor;
-
+    /**
+     * getting email.
+     */
     private Intent mIntent;
-
+    /**
+     * URL for retreiving users.
+     */
     private static String URL;
-
+    /**
+     * logs in.
+     */
     private final static String USER_LOGIN
             = "http://cssgate.insttech.washington.edu/~_450bteam13/login.php?";
 
+    /**
+     * creates activity.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //loginSucess = false;
@@ -85,16 +116,10 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-
-    public boolean validate(String s){
-
-        Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-        Matcher m = p.matcher(s);
-        boolean matchFound = m.matches();
-
-        return matchFound;
-    }
-
+    /**
+     * registes usr.
+     * @param v
+     */
     public void register(View v){
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
@@ -118,11 +143,21 @@ public class SignInActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * launces
+     * @param v
+     */
     public void launch(View v){
         DialogFragment fragment = null;
 
 
     }
+
+    /**
+     * incharge of logging in and writing to local.
+     * @param view
+     */
     public void login(View view){
         this.email = (EditText)findViewById(R.id.email);
         this.password = (EditText)findViewById(R.id.password);
@@ -144,11 +179,20 @@ public class SignInActivity extends AppCompatActivity {
         }*/
 
     }
+
+    /**
+     * logs in user.
+     * @param url
+     */
     public void loginUser(String url){
         LoginUserTask task = new LoginUserTask();
         task.execute(new String[]{url.toString()});
     }
 
+    /**
+     * regisets user.
+     * @param url
+     */
     public void addUser(String url) {
         AddUserTask task = new AddUserTask();
         task.execute(new String[]{url.toString()});
@@ -158,6 +202,12 @@ public class SignInActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * build's url.
+     * @param v
+     * @return
+     */
     private String buildUserURL(View v) {
 
         StringBuilder sb = new StringBuilder(URL);
@@ -183,6 +233,10 @@ public class SignInActivity extends AppCompatActivity {
         }
         return sb.toString();
     }
+
+    /**
+     * innderclass for registerin.
+     */
     private class AddUserTask extends AsyncTask<String, Void, String> {
 
 
@@ -191,6 +245,11 @@ public class SignInActivity extends AppCompatActivity {
             super.onPreExecute();
         }
 
+        /**
+         * executes url
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -265,6 +324,10 @@ public class SignInActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * logs in user.
+     */
     private class LoginUserTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -272,6 +335,11 @@ public class SignInActivity extends AppCompatActivity {
             super.onPreExecute();
         }
 
+        /**
+         * executes url.
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";

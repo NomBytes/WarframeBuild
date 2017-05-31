@@ -79,10 +79,12 @@ public class WarframeDetailFragment extends Fragment {
                     if(getArguments() != null) {
                         CREATE_LOADFRAG.setArguments(getArguments());
                     }
+                    LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getActivity().getSupportFragmentManager()
+                            .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .addToBackStack(null)
-                            .replace(R.id.fragment_container, CREATE_LOADFRAG)
+                            .replace(R.id.fragment_container, myFragment)
                             .commit();
 
                 }
