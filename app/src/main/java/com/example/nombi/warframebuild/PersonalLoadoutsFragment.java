@@ -37,9 +37,8 @@ public class PersonalLoadoutsFragment extends Fragment {
     private WarframeLoadoutDB mloadoutDB;
     private List<String> mLoadoutList;
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+
     private int mColumnCount = 1;
     public static final String TAG = "PERSONAL_LOADOUTS";
     private personalLoadouts mListener;
@@ -56,7 +55,6 @@ public class PersonalLoadoutsFragment extends Fragment {
     public PersonalLoadoutsFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static PersonalLoadoutsFragment newInstance(int columnCount) {
         PersonalLoadoutsFragment fragment = new PersonalLoadoutsFragment();
@@ -186,7 +184,6 @@ public class PersonalLoadoutsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface personalLoadouts {
-        // TODO: Update argument type and name
         void personalLoadouts(String names);
     }
 

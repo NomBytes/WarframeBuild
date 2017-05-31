@@ -30,7 +30,6 @@ import java.net.URLEncoder;
  * create an instance of this fragment.
  */
 public class LoadoutCreateFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     private static final String ARG_PARAM1 = "param1";
@@ -67,7 +66,6 @@ public class LoadoutCreateFragment extends Fragment {
 
     Fragment FRAG = new WarframeFragment();
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -121,7 +119,6 @@ public class LoadoutCreateFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment LoadoutCreateFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static LoadoutCreateFragment newInstance(String param1, String param2) {
         LoadoutCreateFragment fragment = new LoadoutCreateFragment();
         Bundle args = new Bundle();
@@ -375,7 +372,6 @@ public class LoadoutCreateFragment extends Fragment {
 
 
 /*
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.addLoadout(uri);
@@ -415,7 +411,6 @@ public class LoadoutCreateFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface addLoadout {
-        // TODO: Update argument type and name
         void addLoadout(WarframeLoadout w, String url);
     }
 

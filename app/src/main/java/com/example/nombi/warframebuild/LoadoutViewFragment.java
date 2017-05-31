@@ -20,13 +20,11 @@ import com.example.nombi.warframebuild.loadout.WarframeLoadout;
  * create an instance of this fragment.
  */
 public class LoadoutViewFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public static final String LOAD_SELECtED = "loadout_selected";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -45,7 +43,7 @@ public class LoadoutViewFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment LoadoutViewFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static LoadoutViewFragment newInstance(String param1, String param2) {
         LoadoutViewFragment fragment = new LoadoutViewFragment();
         Bundle args = new Bundle();
@@ -112,7 +110,7 @@ public class LoadoutViewFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnViewInteractionListener {
-        // TODO: Update argument type and name
+
         void onFragmentInteraction(WarframeLoadout load);
     }
 }

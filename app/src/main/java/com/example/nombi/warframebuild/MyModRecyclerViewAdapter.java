@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * {@link RecyclerView.Adapter} that can display a {link ModItem} and makes a call to the
  * specified {link personalLoadouts}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class MyModRecyclerViewAdapter extends RecyclerView.Adapter<MyModRecyclerViewAdapter.ViewHolder> {
 

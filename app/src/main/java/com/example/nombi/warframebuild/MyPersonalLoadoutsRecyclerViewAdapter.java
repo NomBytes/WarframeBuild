@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * {@link RecyclerView.Adapter} that can display a {@link String} and makes a call to the
  * specified {@link personalLoadouts}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class MyPersonalLoadoutsRecyclerViewAdapter extends RecyclerView.Adapter<MyPersonalLoadoutsRecyclerViewAdapter.ViewHolder> {
 

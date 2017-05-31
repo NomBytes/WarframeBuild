@@ -36,11 +36,10 @@ public class WarframeFragment extends Fragment {
 
     private static ArrayList<Warframe> warframes = new ArrayList<Warframe>();
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
 
     public static final String WAR_SELECTED = "warframe_selected";
-    // TODO: Customize parameters
+
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
@@ -55,7 +54,6 @@ public class WarframeFragment extends Fragment {
     public WarframeFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static WarframeFragment newInstance(int columnCount) {
         WarframeFragment fragment = new WarframeFragment();
@@ -155,7 +153,6 @@ public class WarframeFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Warframe warframe);
     }
 

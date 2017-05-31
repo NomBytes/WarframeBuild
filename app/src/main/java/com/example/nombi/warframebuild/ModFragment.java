@@ -33,12 +33,11 @@ import java.util.List;
  */
 public class ModFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
 
     private static final String URL =
             "http://cssgate.insttech.washington.edu/~_450bteam13/ModList.php?";
-    // TODO: Customize parameters
+
     private int mColumnCount = 1;
     private OnListModInteractionListener mListener;
     private RecyclerView mRecycle;
@@ -69,7 +68,6 @@ public class ModFragment extends Fragment {
 
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static ModFragment newInstance(int columnCount) {
         ModFragment fragment = new ModFragment();

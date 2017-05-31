@@ -17,7 +17,7 @@
         android:id="@+id/loadout_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Loadout Name" />
+        android:hint="Enter Loadout Name" />
 
     <TextView
         android:id="@+id/author"

@@ -33,7 +33,7 @@ import com.example.nombi.warframebuild.loadout.Mod;
  * create an instance of this fragment.
  */
 public class ModDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -48,7 +48,6 @@ public class ModDetailFragment extends Fragment {
     private TextView mAttribute;
     private SeekBar  mLevelScroll;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     Button changePolarity;
@@ -76,7 +75,7 @@ public class ModDetailFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ModDetailFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static ModDetailFragment newInstance(String param1, String param2) {
         ModDetailFragment fragment = new ModDetailFragment();
         Bundle args = new Bundle();
@@ -321,7 +320,6 @@ public class ModDetailFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
