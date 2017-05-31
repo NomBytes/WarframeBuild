@@ -177,9 +177,20 @@ public class MenuActivity extends AppCompatActivity implements
         super.onBackPressed();
         LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getSupportFragmentManager()
                 .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
+        PersonalLoadoutsFragment fragment = (PersonalLoadoutsFragment)getSupportFragmentManager()
+                .findFragmentByTag(PersonalLoadoutsFragment.TAG);
         if (myFragment != null && myFragment.isVisible()) {
-            // add your code here
+
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+
         }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.show();
 
