@@ -176,7 +176,7 @@ public class MenuActivity extends AppCompatActivity implements
     public void onBackPressed(){
         super.onBackPressed();
         LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getSupportFragmentManager()
-                .findFragmentByTag(CREATE_TAG);
+                .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
         if (myFragment != null && myFragment.isVisible()) {
             // add your code here
         }

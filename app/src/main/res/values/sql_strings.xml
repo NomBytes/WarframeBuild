@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="CREATE_LOADOUT_SQL">
+    CREATE TABLE UserLoadout (
+	    loadout_name VARCHAR(32),
+        email VARCHAR(30),
+        PRIMARY KEY(email, loadout_name)
+    )
+    </string>
+
+    <string name="DROP_LOADOUT_SQL">
+    DROP TABLE IF EXISTS UserLoadout
+    </string>
+</resources>

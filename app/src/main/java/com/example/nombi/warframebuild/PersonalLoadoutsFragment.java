@@ -1,7 +1,8 @@
 package com.example.nombi.warframebuild;
 
-import android.app.AlertDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,8 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.nombi.warframebuild.dummy.DummyContent;
-import com.example.nombi.warframebuild.dummy.DummyContent.DummyItem;
+import com.example.nombi.warframebuild.Data.WarframeLoadoutDB;
 import com.example.nombi.warframebuild.loadout.WarframeLoadout;
 
 import java.io.BufferedReader;
@@ -33,6 +33,9 @@ import java.util.List;
  * interface.
  */
 public class PersonalLoadoutsFragment extends Fragment {
+
+    private WarframeLoadoutDB mloadoutDB;
+    private List<String> mLoadoutList;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -88,11 +91,34 @@ public class PersonalLoadoutsFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+            if(networkInfo != null && networkInfo.isConnected()){
+                DownloadLoadouts task = new DownloadLoadouts();
+                String u = buildUrl(view);
+                task.execute(new String[] {u});
+            }else{
+                Toast.makeText(view.getContext(),
+                        "No network connection available. Displaying locally stored data",
+                        Toast.LENGTH_SHORT).show();
+
+                if(mloadoutDB == null){
+                    mloadoutDB = new WarframeLoadoutDB(getActivity());
+
+                }
+
+                if(mLoadoutList == null){
+                    mLoadoutList = mloadoutDB.getLoadouts();
+                    mRecyclerView.setAdapter(new MyPersonalLoadoutsRecyclerViewAdapter(mLoadoutList, mListener));
+                }
+            }
             //recyclerView.setAdapter(new MyPersonalLoadoutsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-            DownloadLoadouts task = new DownloadLoadouts();
-            String u = buildUrl(view);
-            Log.d("URL",u);
-            task.execute(new String[] {u});
+
+            //Log.d("URL",u);
+
         }
         return view;
     }
@@ -180,8 +206,8 @@ public class PersonalLoadoutsFragment extends Fragment {
                 return;
             }
 
-            List<String> loadoutList = new ArrayList<String>();
-            result = WarframeLoadout.parseCourseJSON(result, loadoutList);
+            mLoadoutList = new ArrayList<String>();
+            result = WarframeLoadout.parseCourseJSON(result, mLoadoutList);
             // Something wrong with the JSON returned.
             if (result != null) {
                 Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG)
@@ -190,11 +216,17 @@ public class PersonalLoadoutsFragment extends Fragment {
             }
 
             // Everything is good, show the list of courses.
-            if (!loadoutList.isEmpty()) {
+            if (!mLoadoutList.isEmpty()) {
                 Log.d("POSTEXECUTE", "list is not empty");
+                if(mloadoutDB == null){
+                    mloadoutDB = new WarframeLoadoutDB(getActivity());
+                }
+                for(int i = 0; i < mLoadoutList.size();i++){
+                    mloadoutDB.insertLoadout(mLoadoutList.get(i));
+                }
 
 
-                mRecyclerView.setAdapter(new MyPersonalLoadoutsRecyclerViewAdapter(loadoutList, mListener));
+                mRecyclerView.setAdapter(new MyPersonalLoadoutsRecyclerViewAdapter(mLoadoutList, mListener));
             }
 
         }
