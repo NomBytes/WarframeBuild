@@ -195,7 +195,7 @@ public class WarframeLoadout implements Serializable {
             }
         }
     }
-
+    public void changeWarframe(Warframe w){myWarframe = w;}
     //Getters
     public String getMyLoadoutName() {
         return myLoadoutName;

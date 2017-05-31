@@ -44,6 +44,19 @@ public class WarframeDetailFragment extends Fragment {
     public WarframeDetailFragment() {
         // Required empty public constructor
     }
+    /**
+     * where we retrieve the warframe that we selected.
+     * this allows us to get to view the information
+     * @param savedInstanceState
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mWarframeItem = (Warframe)
+                    getArguments().getSerializable(WARFRAME_SELECTED);
+        }
+    }
 
     /**
      * doing what evern needs to be done in when creating the view.
@@ -79,8 +92,10 @@ public class WarframeDetailFragment extends Fragment {
                     if(getArguments() != null) {
                         CREATE_LOADFRAG.setArguments(getArguments());
                     }
+
                     LoadoutCreateFragment myFragment = (LoadoutCreateFragment)getActivity().getSupportFragmentManager()
                             .findFragmentByTag(LoadoutCreateFragment.CREATE_TAG);
+                    myFragment.getArguments().putSerializable(LoadoutCreateFragment.WARFRAME_TAG,mWarframeItem);
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .addToBackStack(null)
@@ -125,19 +140,7 @@ public class WarframeDetailFragment extends Fragment {
         }
     }
 
-    /**
-     * where we retrieve the warframe that we selected.
-     * this allows us to get to view the information
-     * @param savedInstanceState
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mWarframeItem = (Warframe)
-                    getArguments().getSerializable(WARFRAME_SELECTED);
-        }
-    }
+
 
 
     /*

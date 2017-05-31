@@ -39,6 +39,7 @@ public class LoadoutCreateFragment extends Fragment {
     public static final String LOADOUT_SELECTED = "selected_load";
     public static final String MOD_CONFIRMED = "MOD_CONFIRMED";
     public static final String CREATE_TAG ="CREATE_SELECTED";
+    public static final String WARFRAME_TAG = "WARFRAME_SELECTED";
 
     public static final String ADD_URL =
             "http://cssgate.insttech.washington.edu/~_450bteam13/addWarF.php?";
@@ -288,7 +289,8 @@ public class LoadoutCreateFragment extends Fragment {
 
             updateView((WarframeLoadout) args.getSerializable(LOADOUT_SELECTED),
                     (Mod)args.getSerializable(MOD_CONFIRMED),
-            args.getInt(ModDetailFragment.LEVEL));
+            args.getInt(ModDetailFragment.LEVEL),
+                    (Warframe)args.getSerializable(WarframeDetailFragment.WARFRAME_SELECTED));
 
         }
     }
@@ -299,17 +301,21 @@ public class LoadoutCreateFragment extends Fragment {
      * @param m
      * @param level
      */
-    public void updateView(WarframeLoadout w,Mod m,int level) {
+    public void updateView(WarframeLoadout w,Mod m,int level, Warframe warframe) {
 
         mWarframe = w.getMyWarframe();
 
         if (w != null) {
+            if(warframe != null){
+                w.changeWarframe(warframe);
+            }
             warframeB.setText(w.getMyWarframe().getMyCharName());
             //mMod = m;
             if(buttonId == null){
                 Log.d("buttonId","button is null");
 
             }
+
             //Log.d("buttonId value",buttonId.toString());
             if(buttonId != null ) {
                 switch (buttonId) {
