@@ -42,7 +42,6 @@ public class ModDetailFragment extends Fragment {
     public static final String LEVEL = "level_selected";
     public static final String POLARITY = "polarity_selected";
 
-
     private TextView mModName;
     private TextView mModLevel;
     private TextView mModCost;
@@ -194,9 +193,6 @@ public class ModDetailFragment extends Fragment {
                                         }
                                         break;
                                 }
-
-
-
                             }
                         });
                 AlertDialog alert = builder.create();
